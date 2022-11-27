@@ -122,7 +122,7 @@ import ToList from "@/components/ToList";
 
 import TwoFromList from "@/components/TwoFromList";
 import TwoToList from "@/components/TwoToList";
-import {mapGetters} from "vuex";
+
 
 
 export default {
