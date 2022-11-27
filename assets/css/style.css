@@ -1,0 +1,203 @@
+h1 {
+    font-size: 48px;
+    font-family: Play-Regular,sans-serif;
+    font-weight: 400;
+    color: #282e38;
+}
+span.blue_span{
+    color: #4070f4;
+}
+h1.text-center{
+    color:#282e38 !important;
+}
+.top_toolbar-container{
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+    font-size: 15px;
+    padding:0px;
+}
+.main_container{
+    max-width: 1400px;
+}
+header.v-toolbar {
+    border-bottom: 1px solid #e6e6e6;
+    margin-bottom:30px
+}
+a:link, a:visited {
+    color: #282e38;
+    text-decoration: none;
+}
+a:hover{
+    color: #4070f4;
+}
+
+.main_page_subtitle{
+    color: #72819f;
+    font-size: 18px;
+    font-family: Roboto-Light,sans-serif;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom:50px;
+
+}
+html, body{
+    margin:0px;
+    padding:0px;
+    width: 100%;
+}
+body{
+    font-size: 15px;
+    color: #282e38;
+
+}
+#app{
+    width:100%
+}
+header .v-container{
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+    font-size: 15px;
+    padding:0px;
+    height: 80px;
+}
+header .logo{
+    width: 100px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin:10px;
+    float:left;
+}
+header .login_button, header .register_button{
+    float: left;
+
+
+}
+header .v-tabs{
+    float: right !important;
+    margin-right: 20px;
+}
+.header_buttons{
+    float: right;
+    margin-right: 20px;
+}
+.hamburder{
+    width:250px;float:left;
+    border:solid 1px #000
+}
+.v-overlay__content .v-list{
+    width: 250px;
+    min-height: 500px;
+}
+.v-overlay__content .v-list a:link, .v-overlay__content .v-list a:visited{
+    font-size: 20px;
+}
+.v-overlay__content .v-list .v-list-item{
+    height: 40px;
+    margin: 10px;
+}
+.tag_title{
+
+    background-color: rgb(247, 250, 252);;
+}
+
+.leftbar .v-list-item-title{
+    font-size:14px
+}
+.change_click_button .v-btn__content{
+    font-size:8px
+}
+.change_click_button{
+    opacity: 0.6;
+    margin-top:5px;
+    margin-bottom:5px
+}
+#rates_table td{
+    vertical-align: top;
+    font-size: 14px;
+}
+#rates_table td span{
+    font-weight: 400;
+}
+#rates_table td.unit_name{
+    width:80px !important;
+
+}
+#rates_table td.give{
+    width:40% !important;
+}
+#rates_table td.get{
+    width:40% !important;
+}
+.leftbar .v-input__details{
+    display: none;
+}
+.leftbar .v-text-field{
+    margin:0px;
+    padding:0px;
+    margin-bottom: 20px;
+
+}
+.leftbar .v-card-text{
+    padding:0px;
+    margin:0px;
+}
+.leftbar .v-alert{
+    height:50px;
+    ovwerflow:hidden;
+    font-size: 12px;
+}
+.v-card-title{
+    font-size: 0.8 rem;
+    font-weight: 500;
+    color: #282e38;
+    margin-bottom: 0px;
+}
+.rate_result_cols_header{
+    background-color: rgb(247, 250, 252);
+    height:60px;
+    line-height:60px;
+}
+.rate_result_cols .v-row div{
+    padding:0px;
+    margin:0px;
+    padding-left:15px;
+    font-weight: 500;
+
+}
+.reserve_mobile_view{
+    margin-top: 15px;
+}
+.rate_card_mobile_view{
+
+}
+.rate_view_mobile{
+}
+.rate_mobile_button{
+    font-size: 12px;
+    opacity: 0.8;
+    float: right; margin-top:-28px !important;
+    height:20px !important;
+    height:30px !important;
+}
+.review_count{
+    float: right;
+    font-size:12px;
+}
+.leftbar .v-expansion-panel-text__wrapper{
+    padding:0px;
+    margin:0px;
+}
+.leftbar .v-expansion-panel--active > .v-expansion-panel-title{
+    min-height: 40px;
+}
