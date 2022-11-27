@@ -57,7 +57,7 @@
                   variant="tonal"
                   v-if="getFromCurrencyName"
               >
-                {{getFromCurrencyName}}
+                {{FromCurrencyName}}
               </v-alert>
                 <from-list />
 
@@ -67,9 +67,9 @@
                   density="comfortable"
                   type="success"
                   variant="tonal"
-                  v-if="getToCurrencyName"
+                  v-if="ToCurrencyName"
               >
-                {{getToCurrencyName}}
+                {{ToCurrencyName}}
               </v-alert>
                 <to-list />
 
@@ -85,9 +85,9 @@
                   density="comfortable"
                   type="success"
                   variant="tonal"
-                  v-if="getFromCurrencyName"
+                  v-if="FromCurrencyName"
               >
-                {{getFromCurrencyName}}
+                {{FromCurrencyName}}
               </v-alert>
               <two-from-list />
             </v-col>
@@ -96,9 +96,9 @@
                   density="comfortable"
                   type="success"
                   variant="tonal"
-                  v-if="getToCurrencyName"
+                  v-if="ToCurrencyName"
               >
-                {{getToCurrencyName}}
+                {{ToCurrencyName}}
               </v-alert>
               <two-to-list />
             </v-col>
@@ -146,9 +146,21 @@ export default {
     this.changeColNum()
     console.log("LocalStorage:" + localStorage.getItem('FromCodeSelected'))
     console.log("LocalStorage:" + localStorage.getItem('ToCodeSelected'))
+    this.MobileCheck = getMobileCheck ()
+    this.FromCurrencyName = getFromCurrencyName()
+    this.ToCurrencyNam = getToCurrencyName ()
+
   },
   computed: {
-    ...mapGetters(["getMobileCheck", "getFromCurrencyName", "getToCurrencyName"]),
+    getMobileCheck () {
+      return $store.getters.getMobileCheck
+    },
+    getFromCurrencyName () {
+      return $store.getters.getMobileCheck
+    },
+    getToCurrencyName () {
+      return $store.getters.getToCurrencyName
+    }
   },
   methods: {
     changeTab() {

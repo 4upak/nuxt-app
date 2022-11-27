@@ -52,7 +52,9 @@ export default {
     FromSearchItem: "",
   }),
   computed: {
-    ...mapGetters(["getCurrenciesFromLists"]),
+    getCurrenciesFromLists () {
+      return $store.getters.getCurrenciesFromLists
+    },
   },
   methods: {
     ...mapActions(["setFromCode"]),
