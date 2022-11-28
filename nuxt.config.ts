@@ -1,8 +1,13 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-
-
 export default defineNuxtConfig({
-
+    modules: [
+        [
+            '@pinia/nuxt',
+            {
+                autoImports: ['defineStore', 'acceptHMRUpdate'],
+            },
+        ],
+    ],
     css: [
         'vuetify/lib/styles/main.sass',
         'assets/css/style.css',

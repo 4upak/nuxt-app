@@ -48,7 +48,7 @@
           </v-btn>
           <v-menu
                 transition="slide-y-transition"
-                v-if="isMobile"
+
             >
               <template v-slot:activator="{ props }">
                 <v-btn
@@ -105,8 +105,8 @@
     </v-toolbar>
 </template>
 <script setup>
-const {isMobile, getMobileCheck} = useMainStore()
-getMobileCheck()
+//const {isMobile, getMobileCheck} = useMainStore()
+//getMobileCheck()
 </script>
 <script>
 

@@ -25,7 +25,9 @@
 
   </v-container>
 </template>
+<scrip setup>
 
+</scrip>
 <script>
 
 //import LeftBar  from "@/components/LeftBar";
