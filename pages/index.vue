@@ -10,11 +10,11 @@
 
     >
       <v-col cols="12" md="5">
-        <left-bar />
+        <!--<left-bar />-->
       </v-col>
       <v-col cols="12" md="7">
           <v-responsive >
-            <top-exchangers />
+            <!--<top-exchangers /> -->
           </v-responsive>
       </v-col>
 
@@ -28,13 +28,13 @@
 
 <script>
 
-import LeftBar  from "@/components/LeftBar";
-import TopExchangers from "@/components/TopExchangers";
+//import LeftBar  from "@/components/LeftBar";
+//import TopExchangers from "@/components/TopExchangers";
 
 export default {
   components: {
-    'left-bar': LeftBar,
-    'top-exchangers': TopExchangers
+    //'left-bar': LeftBar,
+    //'top-exchangers': TopExchangers
 
 
   },
@@ -47,8 +47,8 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch('fetchCurrenciesLists')
-    localStorage.clear()
+    //this.$store.dispatch('fetchCurrenciesLists')
+    //localStorage.clear()
   }
 
 }

@@ -1,14 +1,25 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
+
 export default defineNuxtConfig({
-    css: ['vuetify/lib/styles/main.sass'],
+
+    css: [
+        'vuetify/lib/styles/main.sass',
+        'assets/css/style.css',
+        'assets/css/responsive.css',
+        '@mdi/font/css/materialdesignicons.min.css',
+    ],
 
     build: {
-        transpile: ['vuetify','axios'],
+        transpile: ['vuetify'],
+
     },
     vite: {
         define: {
             'process.env.DEBUG': false,
         },
     },
+
+
 
 })

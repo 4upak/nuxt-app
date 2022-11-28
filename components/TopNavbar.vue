@@ -1,3 +1,4 @@
+
 <template>
 
     <v-toolbar
@@ -47,7 +48,7 @@
           </v-btn>
           <v-menu
                 transition="slide-y-transition"
-                v-if="getMobileCheck"
+                v-if="isMobile"
             >
               <template v-slot:activator="{ props }">
                 <v-btn
@@ -103,18 +104,30 @@
 
     </v-toolbar>
 </template>
-
+<script setup>
+const {isMobile, getMobileCheck} = useMainStore()
+getMobileCheck()
+</script>
 <script>
-import {mapGetters} from "vuex";
+
 import LogoImg from "@/assets/img/logo.png";
 export default {
   name: "TopNavbar",
   data: () => ({
     logo: LogoImg,
+    isMobile:false,
+
   }),
   computed: {
-    ...mapGetters(["getMobileCheck"]),
+    //...mapGetters(["getMobileCheck"]),
   },
+  methods:{
+
+  },
+  mounted() {
+
+  }
+
 };
 
 
