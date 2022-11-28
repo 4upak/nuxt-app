@@ -87,17 +87,13 @@ export default {
     ...mapWritableState(useCurrencyStore, ['to_code_selected', 'toCurrencyName']),
   },
   methods: {
-    ...mapActions(useCurrencyStore, ['searchingTo']),
+    ...mapActions(useCurrencyStore, ['searchingTo', 'setSelection']),
     searchTo() {
       this.searchingFrom(this.ToSearchItem)
     },
     selectItem(code,name){
-      console.log(code+' - '+name)
-
-      this.to_code_selected = code
-      this.toCurrencyName = name
-      localStorage.setItem('ToCodeSelected', code);
-      localStorage.setItem('toCurrencyName', name);
+      console.log("to code:"+code)
+      this.setSelection(code,name,"to")
     }
   },
 

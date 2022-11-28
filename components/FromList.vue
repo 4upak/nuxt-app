@@ -87,18 +87,22 @@ computed: {
   ...mapWritableState(useCurrencyStore, ['from_code_selected', 'fromCurrencyName']),
 },
 methods: {
-  ...mapActions(useCurrencyStore, ['searchingFrom']),
+  ...mapActions(useCurrencyStore, ['searchingFrom','setSelection']),
   searchFrom() {
     this.searchingFrom(this.FromSearchItem)
   },
-  selectItem(code,name){
-    console.log(code+' - '+name)
 
-    this.from_code_selected = code
-    this.fromCurrencyName = name
-    localStorage.setItem('FromCodeSelected', code);
-    localStorage.setItem('fromCurrencyName', name);
+  selectItem(code,name){
+    this.setSelection(code,name,"from")
+
+
+
+  },
+  mounted() {
+    console.log("get router params", this.$route.params.from_code)
+    console.log(this.$route.params)
   }
+
 },
 
 }

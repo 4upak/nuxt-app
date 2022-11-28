@@ -104,7 +104,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'pinia'
+import {mapState, mapActions, mapWritableState} from 'pinia'
 import {useCurrencyStore} from '@/stores/CurrencyStore'
 import {useMainStore} from '@/stores/MainStore'
 
@@ -127,13 +127,15 @@ export default {
   computed: {
     ...mapState(useMainStore, ['isMobile']),
     ...mapState(useCurrencyStore, ['currencies_from_data', 'currencies_to_data']),
-    ...mapState(useCurrencyStore, ['getFromCurrencyName', 'getToCurrencyName'])
+    ...mapWritableState(useCurrencyStore, ['from_code_selected', 'to_code_selected']),
   },
   methods:{
     ...mapActions(useCurrencyStore, ['getCurrencies'])
   },
   mounted() {
+
     this.getCurrencies()
+
   }
 
 };
