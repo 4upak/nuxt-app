@@ -7,17 +7,17 @@
       elevation="0"
   >
     <v-tabs
-      v-model="tab"
-      bg-color="#f7fafc"
-      height="60px"
-      class="leftbar"
+        v-model="tab"
+        bg-color="#f7fafc"
+        height="60px"
+        class="leftbar"
     >
       <v-tab value="one" cols="12" md="4"
       >
         <v-icon
-          size="large"
-          color="blue"
-          class="mx-2"
+            size="large"
+            color="blue"
+            class="mx-2"
         >
           mdi-format-list-text
         </v-icon>
@@ -25,9 +25,9 @@
       </v-tab>
       <v-tab value="two" cols="12" md="4">
         <v-icon
-          size="large"
-          color="blue"
-          class="mx-2"
+            size="large"
+            color="blue"
+            class="mx-2"
         >
           mdi-text-search
         </v-icon>
@@ -35,9 +35,9 @@
       </v-tab>
       <v-tab value="three" cols="12" md="4">
         <v-icon
-          size="large"
-          color="blue"
-          class="mx-2"
+            size="large"
+            color="blue"
+            class="mx-2"
         >
           mdi-thumb-up
         </v-icon>
@@ -45,62 +45,48 @@
       </v-tab>
     </v-tabs>
     <v-card-text>
-
       <v-window v-model="tab">
         <v-window-item value="one">
           <v-row
-            class="mt-5">
+              class="mt-5">
             <v-col :cols="cols_num" :md="md" >
-              <v-alert
-                  density="comfortable"
-                  type="success"
-                  variant="tonal"
-                  v-if="getFromCurrencyName"
-              >
-                {{FromCurrencyName}}
-              </v-alert>
-                <from-list />
+
+              <from-list />
 
             </v-col>
             <v-col :cols="cols_num" :md="md" >
-              <v-alert
-                  density="comfortable"
-                  type="success"
-                  variant="tonal"
-                  v-if="ToCurrencyName"
-              >
-                {{ToCurrencyName}}
-              </v-alert>
-                <to-list />
+
+              <to-list />
 
             </v-col>
           </v-row>
         </v-window-item>
 
         <v-window-item value="two">
+          two
           <v-row
-            class="mt-5">
+              class="mt-5">
             <v-col :cols="cols_num" :md="md">
-              <v-alert
+              <!--<v-alert
                   density="comfortable"
                   type="success"
                   variant="tonal"
-                  v-if="FromCurrencyName"
+                  v-if="getFromCurrencyName"
               >
-                {{FromCurrencyName}}
+                {{getFromCurrencyName}}
               </v-alert>
-              <two-from-list />
+              <two-from-list /> -->
             </v-col>
             <v-col :cols="cols_num" :md="md">
-              <v-alert
+              <!--<v-alert
                   density="comfortable"
                   type="success"
                   variant="tonal"
-                  v-if="ToCurrencyName"
+                  v-if="getToCurrencyName"
               >
-                {{ToCurrencyName}}
+                {{getToCurrencyName}}
               </v-alert>
-              <two-to-list />
+              <two-to-list />-->
             </v-col>
           </v-row>
 
@@ -112,72 +98,45 @@
         </v-window-item>
       </v-window>
     </v-card-text>
+
   </v-card>
 </div>
 </template>
 
 <script>
+import { mapState, mapActions } from 'pinia'
+import {useCurrencyStore} from '@/stores/CurrencyStore'
+import {useMainStore} from '@/stores/MainStore'
+
 import FromList from "@/components/FromList";
 import ToList from "@/components/ToList";
-
-import TwoFromList from "@/components/TwoFromList";
-import TwoToList from "@/components/TwoToList";
-
 
 
 export default {
   name: "LeftBar",
-  components: {
-    "from-list" : FromList,
-    "to-list" : ToList,
-    "two-from-list" : TwoFromList,
-    "two-to-list" : TwoToList,
-
-
-  },
   data: () => ({
     tab: 'one',
     "cols_num": 12,
     "md": 6
-  }),
-  mounted() {
-    this.$store.dispatch('fetchCurrenciesLists')
-    this.changeTab()
-    this.changeColNum()
-    console.log("LocalStorage:" + localStorage.getItem('FromCodeSelected'))
-    console.log("LocalStorage:" + localStorage.getItem('ToCodeSelected'))
-    this.MobileCheck = getMobileCheck ()
-    this.FromCurrencyName = getFromCurrencyName()
-    this.ToCurrencyNam = getToCurrencyName ()
 
+  }),
+  components: {
+    "from-list" : FromList,
+    "to-list" : ToList
   },
   computed: {
-    getMobileCheck () {
-      return $store.getters.getMobileCheck
-    },
-    getFromCurrencyName () {
-      return $store.getters.getMobileCheck
-    },
-    getToCurrencyName () {
-      return $store.getters.getToCurrencyName
-    }
+    ...mapState(useMainStore, ['isMobile']),
+    ...mapState(useCurrencyStore, ['currencies_from_data', 'currencies_to_data']),
+    ...mapState(useCurrencyStore, ['getFromCurrencyName', 'getToCurrencyName'])
   },
-  methods: {
-    changeTab() {
-      console.log('Mobile check:' + this.getMobileCheck)
-      if(this.getMobileCheck && localStorage.getItem('FromCodeSelected') && localStorage.getItem('ToCodeSelected'))
-        this.tab = 'two'
-
-    },
-    changeColNum(){
-      if(this.getMobileCheck){
-        this.cols_num = 6
-        this.md = 3
-      }
-
-    }
+  methods:{
+    ...mapActions(useCurrencyStore, ['getCurrencies'])
+  },
+  mounted() {
+    this.getCurrencies()
   }
-}
+
+};
 </script>
 
 <style scoped>

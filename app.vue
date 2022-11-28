@@ -3,6 +3,7 @@
     <v-main>
       <topnavbar />
       <v-container fluid class="main_container">
+
         <router-view />
         <slot></slot>
       </v-container>
@@ -11,10 +12,17 @@
   </v-app>
 </template>
 
+<script setup>
+
+
+</script>
+
 <script>
 import TopNavbar from '@/components/TopNavbar'
 import BottomNavbar from "@/components/BottomNavbar";
 //import {mapGetters} from "vuex";
+import {mapActions } from 'pinia'
+import {useMainStore} from '@/stores/MainStore'
 
 export default {
   name: 'App',
@@ -22,19 +30,14 @@ export default {
     topnavbar: TopNavbar,
     bottomnavbar: BottomNavbar
   },
+
   methods:{
-    isMobile() {
-      if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        return true
-      } else {
-        return false
-      }
-    },
+    ...mapActions(useMainStore, ['getMobileCheck']),
+
+
   },
   mounted() {
-    //this.$store.dispatch('setMobile', this.isMobile())
-
-
+    this.getMobileCheck()
 
   },
   computed: {

@@ -1,27 +1,26 @@
-<template >
-
+<template>
   <v-text-field
-    label="Get currency"
-    v-model="ToSearchItem"
-    @input="searchTo"
-    id="to-list"
+      label="Give currency"
+      v-model="ToSearchItem"
+      @input="searchTo"
+      id="to-list"
   >
-
   </v-text-field>
+
 
   <v-expansion-panels
       v-model="panel"
       multiple
       variant="accordion"
-      v-if="getCurrenciesToLists.length > 0"
-
+      v-if="currencies_to_data.length > 0"
   >
     <template
-        v-for="(item, i) in getCurrenciesToLists"
+        v-for="(item, i) in currencies_to_data"
     >
       <v-expansion-panel
           :key="i"
           v-if="item.active == true"
+          color="primary"
       >
         <v-expansion-panel-title
             color="blue"
@@ -29,7 +28,7 @@
         <v-expansion-panel-text>
           <div
               :key="i"
-              v-if="getCurrenciesToLists.length > 0 && item.active == true"
+              v-if="currencies_to_data.length > 0 && item.active == true"
           >
             <v-list
                 density="compact"
@@ -38,9 +37,10 @@
                 <v-list-item
                     :key="j"
                     :value="currency"
-                    active-color="green"
-                    @click="this.setToCode(currency.code_name); scrollTo()"
+
+                    @click="selectItem(currency.code_name, currency.name);"
                     v-if = "currency.active == true"
+                    active-color="green"
 
                     :class="{ 'v-list-item--active': currency.code_name == this.$route.params.to_code }"
 
@@ -59,6 +59,8 @@
     </template>
   </v-expansion-panels>
 
+
+
   <v-progress-circular
       indeterminate
       color="primary"
@@ -66,34 +68,38 @@
       align-center
   ></v-progress-circular>
 
-
 </template>
 
 <script>
+import { mapState, mapWritableState, mapActions } from 'pinia'
+import {useCurrencyStore} from '@/stores/CurrencyStore'
 
 export default {
   name: "ToList",
+
   data: () => ({
-    fromSelectedItem: 0,
+    toSelectedItem: 0,
     ToSearchItem: "",
     panel: [0,1,2,3,4,5,6],
   }),
   computed: {
-    ...mapGetters(["getCurrenciesToLists"]),
+    ...mapState(useCurrencyStore, ['currencies_to_data']),
+    ...mapWritableState(useCurrencyStore, ['to_code_selected', 'toCurrencyName']),
   },
   methods: {
-    ...mapActions(["setToCode"]),
+    ...mapActions(useCurrencyStore, ['searchingTo']),
     searchTo() {
-      this.$store.dispatch("searchTo", this.ToSearchItem);
+      this.searchingFrom(this.ToSearchItem)
     },
-    scrollTo() {
-      document.getElementById("from-list").scrollIntoView( { behavior: "smooth" } );
-    },
+    selectItem(code,name){
+      console.log(code+' - '+name)
+
+      this.to_code_selected = code
+      this.toCurrencyName = name
+      localStorage.setItem('ToCodeSelected', code);
+      localStorage.setItem('toCurrencyName', name);
+    }
   },
 
 }
 </script>
-
-<style scoped>
-
-</style>

@@ -54,7 +54,7 @@
                 <v-btn
                     icon
                     v-bind="props"
-                    if
+                    v-if="isMobile"
                 >
                   <v-icon
                       color="blue"
@@ -104,29 +104,22 @@
 
     </v-toolbar>
 </template>
-<script setup>
-//const {isMobile, getMobileCheck} = useMainStore()
-//getMobileCheck()
-</script>
+
 <script>
+
+import { mapState} from 'pinia'
+import {useMainStore} from '../stores/MainStore'
 
 import LogoImg from "@/assets/img/logo.png";
 export default {
   name: "TopNavbar",
   data: () => ({
     logo: LogoImg,
-    isMobile:false,
-
   }),
   computed: {
-    //...mapGetters(["getMobileCheck"]),
+    ...mapState(useMainStore, ['isMobile'])
   },
-  methods:{
 
-  },
-  mounted() {
-
-  }
 
 };
 

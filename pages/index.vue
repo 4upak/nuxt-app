@@ -10,7 +10,7 @@
 
     >
       <v-col cols="12" md="5">
-        <!--<left-bar />-->
+        <left-bar />
       </v-col>
       <v-col cols="12" md="7">
           <v-responsive >
@@ -30,12 +30,12 @@
 </scrip>
 <script>
 
-//import LeftBar  from "@/components/LeftBar";
+import LeftBar  from "@/components/LeftBar";
 //import TopExchangers from "@/components/TopExchangers";
 
 export default {
   components: {
-    //'left-bar': LeftBar,
+    'left-bar': LeftBar,
     //'top-exchangers': TopExchangers
 
 
