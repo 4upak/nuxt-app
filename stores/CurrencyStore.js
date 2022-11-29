@@ -86,14 +86,10 @@ export const useCurrencyStore = defineStore('currencies', {
             if(type == 'from') {
                 this.from_code_selected = code.toLowerCase()
                 this.fromCurrencyName = name
-                localStorage.setItem('FromCodeSelected', code.toLowerCase())
-                localStorage.setItem('fromCurrencyName', name)
             }
             if(type == 'to') {
                 this.to_code_selected = code.toLowerCase()
                 this.toCurrencyName = name
-                localStorage.setItem('ToCodeSelected', code.toLowerCase())
-                localStorage.setItem('toCurrencyName', name)
             }
 
             if (this.from_code_selected != null && this.to_code_selected != null) {
@@ -103,7 +99,7 @@ export const useCurrencyStore = defineStore('currencies', {
 
         },
 
-        loadSelection() {
+        /*loadSelection() {
             if(localStorage.getItem('FromCodeSelected') != null) {
                 this.from_code_selected = localStorage.getItem('FromCodeSelected')
                 this.fromCurrencyName = localStorage.getItem('fromCurrencyName')
@@ -112,14 +108,15 @@ export const useCurrencyStore = defineStore('currencies', {
                 this.to_code_selected = localStorage.getItem('ToCodeSelected')
                 this.toCurrencyName = localStorage.getItem('toCurrencyName')
             }
-            //clear local storage
-            localStorage.removeItem('FromCodeSelected')
-            localStorage.removeItem('ToCodeSelected')
-            localStorage.removeItem('fromCurrencyName')
-            localStorage.removeItem('toCurrencyName')
-            console.log("localstorage cleared")
-        }
 
+        },*/
+        clearSelections() {
+            this.from_code_selected = null
+            this.fromCurrencyName  = null
+            this.to_code_selected = null
+            this.toCurrencyName = null
+
+        }
     }
 
 })

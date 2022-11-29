@@ -42,7 +42,7 @@
                     v-if = "currency.active == true"
                     active-color="green"
 
-                    :class="{ 'v-list-item--active': currency.code_name == this.$route.params.from_code }"
+                    :class="{ 'v-list-item--active': currency.code_name == this.from_code_selected }"
 
                 >
                   <v-list-item-title>

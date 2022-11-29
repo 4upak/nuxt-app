@@ -27,6 +27,9 @@ and (-webkit-min-device-pixel-ratio: 2) {
     .leftbar .v-list-item-title{
         font-size: 14px;
     }
+    .v-main .main_container{
+        padding: 0px;
+    }
 
 }
 

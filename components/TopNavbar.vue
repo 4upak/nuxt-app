@@ -46,15 +46,16 @@
           >
             Login
           </v-btn>
+
           <v-menu
                 transition="slide-y-transition"
-
+                v-if="isMobile"
             >
-              <template v-slot:activator="{ props }">
+              <template v-slot:activator="{ props }" >
                 <v-btn
                     icon
                     v-bind="props"
-                    v-if="isMobile"
+
                 >
                   <v-icon
                       color="blue"

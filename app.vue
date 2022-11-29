@@ -20,8 +20,8 @@
 <script>
 import TopNavbar from '@/components/TopNavbar'
 import BottomNavbar from "@/components/BottomNavbar";
-//import {mapGetters} from "vuex";
-import {mapActions } from 'pinia'
+
+import {mapActions, mapState } from 'pinia'
 import {useMainStore} from '@/stores/MainStore'
 
 export default {
@@ -34,15 +34,16 @@ export default {
   methods:{
     ...mapActions(useMainStore, ['getMobileCheck']),
 
-
-  },
-  mounted() {
-    this.getMobileCheck()
-
   },
   computed: {
-    //...mapGetters(["getMobileCheck"]),
+    ...mapState(useMainStore, ["isMobile"]),
   },
+  created() {
+    this.getMobileCheck()
+  },
+
+
+
 
 }
 </script>

@@ -126,15 +126,44 @@ export default {
   },
   computed: {
     ...mapState(useMainStore, ['isMobile']),
-    ...mapState(useCurrencyStore, ['currencies_from_data', 'currencies_to_data']),
+    ...mapState(useCurrencyStore, ['currencies_from_data', 'currencies_to_data', 'from_code_selected', 'to_code_selected']),
     ...mapWritableState(useCurrencyStore, ['from_code_selected', 'to_code_selected']),
   },
   methods:{
-    ...mapActions(useCurrencyStore, ['getCurrencies'])
+    ...mapActions(useCurrencyStore, ['getCurrencies']),
+
+    changeColNum(){
+      console.log("[leftbar] changeColNum")
+      if(this.isMobile){
+        console.log("[leftbar] col num changed")
+        this.cols_num = 6
+        this.md = 3
+        console.log("[leftbar] colls changed")
+      }
+
+    },
+
+
+    changeTab() {
+      console.log('Mobile check:' + this.isMobile)
+
+      if(this.isMobile && this.from_code_selected != null && this.from_to_selected != null){
+        console.log("[leftbar] tab changed")
+        this.tab = 'two'
+      }
+
+    },
+
+
   },
   mounted() {
-
+    console.log("[leftbar mounted] is mobile var: " + this.isMobile)
     this.getCurrencies()
+    console.log("[leftbar mounted] get currencies")
+    this.changeColNum()
+    console.log("[leftbar mounted] get changeColNum")
+    this.changeTab()
+    console.log("[leftbar mounted] changeTab")
 
   }
 

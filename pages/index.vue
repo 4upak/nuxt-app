@@ -29,6 +29,8 @@
 
 </scrip>
 <script>
+import { mapActions } from 'pinia'
+import {useCurrencyStore} from '@/stores/CurrencyStore'
 
 import LeftBar  from "@/components/LeftBar";
 //import TopExchangers from "@/components/TopExchangers";
@@ -48,11 +50,15 @@ export default {
       name: 'White Exchangers monitoring',
     }
   },
+  methods:{
+    ...mapActions(useCurrencyStore, ['clearSelections'])
+  },
   mounted() {
-    //this.$store.dispatch('fetchCurrenciesLists')
-    //localStorage.clear()
+    this.clearSelections()
+    console.log('[index page] selection cleared')
 
-  }
+  },
+
 
 }
 </script>

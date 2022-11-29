@@ -56,11 +56,11 @@ export default {
 
   },
   methods: {
-    ...mapActions(useCurrencyStore, ['loadSelection'])
+  //  ...mapActions(useCurrencyStore, ['loadSelection'])
   },
   mounted() {
     console.log("load selection")
-    this.loadSelection();
+    //this.loadSelection();
     console.log(this.fromCurrencyName + " -> " + this.toCurrencyName)
 
   }
