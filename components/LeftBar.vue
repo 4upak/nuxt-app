@@ -113,6 +113,10 @@ import ToList from "@/components/ToList";
 
 
 export default {
+  setup(){
+    const currencyStore = useCurrencyStore()
+    currencyStore.getCurrencies()
+  },
   name: "LeftBar",
   data: () => ({
     tab: 'one',

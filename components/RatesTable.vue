@@ -106,46 +106,21 @@
 import { mapState, mapActions} from 'pinia'
 import {useRatesStore} from '../stores/RatesStore'
 import {useMainStore} from '@/stores/MainStore'
-import {useCurrencyStore} from '@/stores/CurrencyStore'
 
-const currency_store = useCurrencyStore()
+
+
 const rates_store = useRatesStore()
-const unsubscribe = currency_store.$onAction(
-    ({
-       name, // name of the action
-       store, // store instance, same as `someStore`
-       args, // array of parameters passed to the action
-       after, // hook after the action returns or resolves
-       onError, // hook if the action throws or rejects
-     }) => {
-      // a shared variable for this specific action call
-      const startTime = Date.now()
-      // this will trigger before an action on `store` is executed
-      console.log('before action', name, args)
-      if(name === 'setSelection'){
-        rates_store.rates = []
-      }
-
-      // this will trigger if the action succeeds and after it has fully run.
-      // it waits for any returned promised
-      after((result) => {
-        console.log('after action', name, args, result)
-        if(name === 'setSelection' && currency_store.from_code_selected && currency_store.to_code_selected){
-          rates_store.getRates(currency_store.from_code_selected, currency_store.to_code_selected)
-        }
-
-
-      })
-
-      // this will trigger if the action throws or returns a promise that rejects
-      onError((error) => {
-        console.error(error)
-      })
-    }
-)
 
 
 export default {
+
+  setup() {
+    const rates_store = useRatesStore()
+    const route = useRoute()
+    rates_store.getRates(route.params.from_code, route.params.to_code)
+
+  },
+
   name: "RatesTable",
   data () {
     return {
@@ -157,12 +132,10 @@ export default {
     ...mapState(useMainStore,["isMobile"]),
   },
   methods: {
-    ...mapActions(useRatesStore,["getRates"]),
+
   },
   mounted() {
-    console.log('[Ratestable mounted}' + this.$route.params.from_code + " -> " + this.$route.params.to_code)
 
-    this.getRates(this.$route.params.from_code, this.$route.params.to_code)
   }
 }
 </script>

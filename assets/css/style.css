@@ -201,3 +201,9 @@ header .v-tabs{
 .leftbar .v-expansion-panel--active > .v-expansion-panel-title{
     min-height: 40px;
 }
+.main_container{
+    max-width: 1300px !important;
+}
+.top-navbar a.active{
+    font-weight: bold;
+}

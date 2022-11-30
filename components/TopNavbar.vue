@@ -18,14 +18,14 @@
         <v-tabs
           align-with-title
           height="80px"
-          class="top_toolbar-tabs"
+          class="top_toolbar-tabs top-navbar"
         >
-          <v-tab><router-link to="/">Home</router-link></v-tab>
-          <v-tab><router-link to="/news/">News</router-link></v-tab>
-          <v-tab><router-link to="/exchanges/">Exchanges</router-link></v-tab>
-          <v-tab><router-link to="/articles/">Articles</router-link></v-tab>
-          <v-tab><router-link to="/faq/">F.A.Q</router-link></v-tab>
-          <v-tab><router-link to="/contacts/">Contacts</router-link></v-tab>
+          <v-tab><nuxt-link active-class="active" to="/">Home</nuxt-link></v-tab>
+          <v-tab><nuxt-link active-class="active" to="/news/">News</nuxt-link></v-tab>
+          <v-tab><nuxt-link active-class="active" to="/exchanges/">Exchanges</nuxt-link></v-tab>
+          <v-tab><nuxt-link active-class="active" to="/articles/">Articles</nuxt-link></v-tab>
+          <v-tab><nuxt-link active-class="active" to="/faq/">F.A.Q</nuxt-link></v-tab>
+          <v-tab><nuxt-link active-class="active" to="/contacts/">Contacts</nuxt-link></v-tab>
         </v-tabs>
 
 

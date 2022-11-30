@@ -46,7 +46,7 @@
 
                 >
                   <v-list-item-title>
-                    [{{currency.selected}}]{{ currency.name }}
+                    {{ currency.name }}
                   </v-list-item-title>
 
                 </v-list-item>
@@ -75,7 +75,10 @@ import { mapState, mapWritableState, mapActions } from 'pinia'
 import {useCurrencyStore} from '@/stores/CurrencyStore'
 
 export default {
-name: "FromList",
+  name: 'FromList',
+
+
+
 
 data: () => ({
   fromSelectedItem: 0,

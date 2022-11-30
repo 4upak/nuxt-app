@@ -34,8 +34,6 @@ export default {
 
   methods:{
     ...mapActions(useMainStore, ['getMobileCheck']),
-    ...mapActions(useCurrencyStore, ['getCurrencies']),
-
   },
   computed: {
     ...mapState(useMainStore, ["isMobile"]),

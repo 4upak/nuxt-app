@@ -46,7 +46,7 @@
 
                 >
                   <v-list-item-title>
-                    [{{currency.selected}}}]{{ currency.name }}
+                    {{ currency.name }}
                   </v-list-item-title>
 
                 </v-list-item>

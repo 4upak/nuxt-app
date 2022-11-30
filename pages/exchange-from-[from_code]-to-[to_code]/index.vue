@@ -2,7 +2,7 @@
 
   <v-container class="lighten-5">
     <!-- title -->
-    <h1 class="text-center rates_page_title">Exchange <span class="blue_span">{{fromCurrencyName}}</span> to <span class="blue_span">{{toCurrencyName}}</span></h1>
+    <h1 class="text-center rates_page_title" v-if="fromCurrencyName && toCurrencyName">Exchange <span class="blue_span">{{fromCurrencyName}}</span> to <span class="blue_span">{{toCurrencyName}}</span></h1>
     <!-- 3 rows of articles -->
     <v-row
       class="mt-5"
@@ -27,17 +27,68 @@
   </v-container>
 </template>
 
+
 <script>
+
 
 import LeftBar  from "@/components/LeftBar";
 import RatesTable from "@/components/RatesTable";
 
 import { mapState, mapActions } from 'pinia'
 import {useCurrencyStore} from '@/stores/CurrencyStore'
-//import {useMainStore} from '@/stores/MainStore'
+
+const currency_store = useCurrencyStore()
+
+const unsubscribe = currency_store.$onAction(
+    ({
+       name, // name of the action
+       store, // store instance, same as `someStore`
+       args, // array of parameters passed to the action
+       after, // hook after the action returns or resolves
+       onError, // hook if the action throws or rejects
+     }) => {
+
+      const startTime = Date.now()
+      console.log('before action', name, args)
+      if(name === 'setSelection'){
+        rates_store.rates = []
+      }
+
+      after((result) => {
+        console.log('after action', name, args, result)
+        if(name === 'setSelection' && currency_store.from_code_selected && currency_store.to_code_selected){
+          rates_store.getRates(currency_store.from_code_selected, currency_store.to_code_selected)
+        }
+
+
+      })
+
+      onError((error) => {
+        console.error(error)
+      })
+    }
+)
 
 
 export default {
+
+  setup() {
+
+    const currencyStore = useCurrencyStore()
+    const route = useRoute()
+    currencyStore.loadSelection(route.params.from_code, route.params.to_code)
+
+    return {
+      fromCurrencyName: currencyStore.fromCurrencyName,
+      toCurrencyName: currencyStore.toCurrencyName
+    }
+
+
+
+  },
+
+
+
   name: "MainPage",
   components: {
     'left-bar': LeftBar,
@@ -48,35 +99,25 @@ export default {
       name: 'Currency Converter',
       from_direction: this.$route.params.from_code,
       to_direction: this.$route.params.to_code,
-      rates:[],
     }
   },
   computed: {
-    ...mapState(useCurrencyStore, ['fromCurrencyName', 'toCurrencyName']),
 
   },
+
   methods: {
-    ...mapActions(useCurrencyStore, ['loadSelection', 'getCurrencies'])
   },
   created() {
 
   },
+
+
   mounted() {
-    console.log("[rates table page created ] get currencies")
-    this.getCurrencies()
-
-    console.log("[rates paeg mounted]Load Selection")
-    this.loadSelection(this.$route.params.from_code, this.$route.params.to_code)
-    //sleep(1000)
-    // laodSelection after getCurrencies this.currencies_to_data is created
-
 
 
   },
-  activated() {
 
 
-  },
 
 
 }
