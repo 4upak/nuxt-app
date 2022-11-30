@@ -116,6 +116,8 @@ export default {
   setup(){
     const currencyStore = useCurrencyStore()
     currencyStore.getCurrencies()
+
+    return {}
   },
   name: "LeftBar",
   data: () => ({
@@ -134,7 +136,6 @@ export default {
     ...mapWritableState(useCurrencyStore, ['from_code_selected', 'to_code_selected']),
   },
   methods:{
-    ...mapActions(useCurrencyStore, ['getCurrencies']),
 
     changeColNum(){
       if(this.isMobile){

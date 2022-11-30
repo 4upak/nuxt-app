@@ -2,7 +2,7 @@
 
   <v-container class="lighten-5">
     <!-- title -->
-    <h1 class="text-center rates_page_title" v-if="fromCurrencyName && toCurrencyName">Exchange <span class="blue_span">{{fromCurrencyName}}</span> to <span class="blue_span">{{toCurrencyName}}</span></h1>
+    <!--<h1 class="text-center rates_page_title" v-if="fromCurrencyName && toCurrencyName">Exchange <span class="blue_span">{{fromCurrencyName}}</span> to <span class="blue_span">{{toCurrencyName}}</span></h1>-->
     <!-- 3 rows of articles -->
     <v-row
       class="mt-5"
@@ -36,8 +36,10 @@ import RatesTable from "@/components/RatesTable";
 
 import { mapState, mapActions } from 'pinia'
 import {useCurrencyStore} from '@/stores/CurrencyStore'
+import {useRatesStore} from "../../stores/RatesStore";
 
 const currency_store = useCurrencyStore()
+const rates_store = useRatesStore()
 
 const unsubscribe = currency_store.$onAction(
     ({
@@ -51,14 +53,13 @@ const unsubscribe = currency_store.$onAction(
       const startTime = Date.now()
       console.log('before action', name, args)
       if(name === 'setSelection'){
+        console.log('setSelection action')
         rates_store.rates = []
+        rates_store.getRates(currency_store.from_code_selected, currency_store.to_code_selected)
       }
 
       after((result) => {
         console.log('after action', name, args, result)
-        if(name === 'setSelection' && currency_store.from_code_selected && currency_store.to_code_selected){
-          rates_store.getRates(currency_store.from_code_selected, currency_store.to_code_selected)
-        }
 
 
       })
@@ -85,6 +86,7 @@ export default {
 
 
 
+
   },
 
 
@@ -97,15 +99,15 @@ export default {
   data () {
     return {
       name: 'Currency Converter',
-      from_direction: this.$route.params.from_code,
-      to_direction: this.$route.params.to_code,
     }
   },
   computed: {
 
+
   },
 
   methods: {
+    ...mapActions(useCurrencyStore,[''])
   },
   created() {
 

@@ -17,15 +17,17 @@
     <template
         v-for="(item, i) in currencies_from_data"
     >
+
       <v-expansion-panel
           :key="i"
           v-if="item.active == true"
           color="primary"
       >
+
         <v-expansion-panel-title
             color="blue"
         >{{item.name}}</v-expansion-panel-title>
-        <v-expansion-panel-text>
+
           <div
               :key="i"
               v-if="currencies_from_data.length > 0 && item.active == true"
@@ -53,11 +55,13 @@
               </template>
             </v-list>
           </div>
-        </v-expansion-panel-text>
+
 
       </v-expansion-panel>
+
     </template>
   </v-expansion-panels>
+
 
 
 
@@ -75,6 +79,7 @@ import { mapState, mapWritableState, mapActions } from 'pinia'
 import {useCurrencyStore} from '@/stores/CurrencyStore'
 
 export default {
+
   name: 'FromList',
 
 

@@ -63,16 +63,20 @@ import { mapState, mapActions} from 'pinia'
 import {useExchangersStore} from '../stores/ExchangersStore'
 
 export default {
+  setup(){
+    const exchangers_store = useExchangersStore()
+    exchangers_store.getExchangers()
+
+  },
   name: "TopExchangers",
   computed: {
     ...mapState(useExchangersStore,['top_exchangers']),
   },
   methods: {
-    ...mapActions(useExchangersStore,["getExchangers"]),
   },
 
   mounted() {
-    this.getExchangers()
+
   },
 
 }

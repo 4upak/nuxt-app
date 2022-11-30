@@ -25,9 +25,6 @@
 
   </v-container>
 </template>
-<scrip setup>
-
-</scrip>
 <script>
 import { mapActions } from 'pinia'
 import {useCurrencyStore} from '@/stores/CurrencyStore'
@@ -51,14 +48,12 @@ export default {
     }
   },
   methods:{
-    ...mapActions(useCurrencyStore, ['clearSelections', 'getCurrencies'])
+    ...mapActions(useCurrencyStore, ['clearSelections'])
   },
   mounted() {
     this.clearSelections()
     console.log('[index page] selection cleared')
 
-    console.log("[index page] get currencies")
-    this.getCurrencies()
   },
 
 

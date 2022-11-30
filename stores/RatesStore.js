@@ -8,12 +8,15 @@ export const useRatesStore = defineStore('rates', {
     }),
     actions: {
         async getRates(from_code, to_code) {
-            console.log(from_code, to_code)
+
             //from_code to uper case
-            from_code = from_code.toUpperCase()
-            to_code = to_code.toUpperCase()
-            const res = await useFetch(this.api_domain + 'digimon/api/exchanges/'+from_code+'/'+to_code+'/')
-            this.rates = res.data._rawValue
+            if(from_code && to_code){
+                console.log("[get rates store] get rates:"+from_code+"->"+to_code)
+                from_code = from_code.toUpperCase()
+                to_code = to_code.toUpperCase()
+                const res = await useFetch(this.api_domain + 'digimon/api/exchanges/'+from_code+'/'+to_code+'/')
+                this.rates = res.data._rawValue
+            }
         }
     }
 })

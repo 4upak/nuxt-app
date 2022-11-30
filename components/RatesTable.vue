@@ -107,17 +107,16 @@ import { mapState, mapActions} from 'pinia'
 import {useRatesStore} from '../stores/RatesStore'
 import {useMainStore} from '@/stores/MainStore'
 
-
-
-const rates_store = useRatesStore()
-
-
 export default {
 
   setup() {
     const rates_store = useRatesStore()
     const route = useRoute()
-    rates_store.getRates(route.params.from_code, route.params.to_code)
+    const from_code = route.params.from_code
+    const to_code = route.params.to_code
+    console.log("rates table console")
+    console.log(from_code, to_code)
+    rates_store.getRates(from_code, to_code)
 
   },
 
@@ -132,9 +131,11 @@ export default {
     ...mapState(useMainStore,["isMobile"]),
   },
   methods: {
+    ...mapActions(useRatesStore,['getRates'])
 
   },
   mounted() {
+    this.getRates(this.$route.params.from_code, this.$route.params.to_code)
 
   }
 }
