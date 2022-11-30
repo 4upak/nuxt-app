@@ -18,14 +18,21 @@ export const useCurrencyStore = defineStore('currencies', {
 
     actions: {
         async getCurrencies() {
+            console.log('[currecny store] get currencies ')
             const res = await useFetch(this.api_domain + 'digimon/api/cryptotags/')
             this.currencies_from_data = JSON.parse(JSON.stringify(res.data._rawValue))
+            var temp = this.currencies_from_data[0]
+            this.currencies_from_data[0] = this.currencies_from_data[1]
+            this.currencies_from_data[1] = temp
+
             this.currencies_to_data = JSON.parse(JSON.stringify(res.data._rawValue))
-            console.log(this.currencies_from_data)
+
+            var temp = this.currencies_to_data[0]
+            this.currencies_to_data[0] = this.currencies_to_data[1]
+            this.currencies_to_data[1] = temp
         },
 
         async searchingFrom(payload) {
-            console.log(payload)
             for (var i = 0; i < this.currencies_from_data.length; i++) {
 
                 for (var j = 0; j < this.currencies_from_data[i].tag_currencies.length; j++) {
@@ -86,10 +93,32 @@ export const useCurrencyStore = defineStore('currencies', {
             if(type == 'from') {
                 this.from_code_selected = code.toLowerCase()
                 this.fromCurrencyName = name
+                //find element in currencies_from_data where code_name = code
+
+                for (var i = 0; i < this.currencies_from_data.length; i++) {
+                    for (var j = 0; j < this.currencies_from_data[i].tag_currencies.length; j++) {
+                        if (this.currencies_from_data[i].tag_currencies[j].code_name == code) {
+                            this.currencies_from_data[i].tag_currencies[j].selected = true
+                        } else {
+                            this.currencies_from_data[i].tag_currencies[j].selected = false
+                        }
+                    }
+                }
+
             }
             if(type == 'to') {
                 this.to_code_selected = code.toLowerCase()
                 this.toCurrencyName = name
+
+                for (var i = 0; i < this.currencies_to_data.length; i++) {
+                    for (var j = 0; j < this.currencies_to_data[i].tag_currencies.length; j++) {
+                        if (this.currencies_to_data[i].tag_currencies[j].code_name == code) {
+                            this.currencies_to_data[i].tag_currencies[j].selected = true
+                        } else {
+                            this.currencies_to_data[i].tag_currencies[j].selected = false
+                        }
+                    }
+                }
             }
 
             if (this.from_code_selected != null && this.to_code_selected != null) {
@@ -98,18 +127,52 @@ export const useCurrencyStore = defineStore('currencies', {
             }
 
         },
-
-        /*loadSelection() {
-            if(localStorage.getItem('FromCodeSelected') != null) {
-                this.from_code_selected = localStorage.getItem('FromCodeSelected')
-                this.fromCurrencyName = localStorage.getItem('fromCurrencyName')
-            }
-            if(localStorage.getItem('ToCodeSelected') != null) {
-                this.to_code_selected = localStorage.getItem('ToCodeSelected')
-                this.toCurrencyName = localStorage.getItem('toCurrencyName')
+        async loadSelection(from_code, to_code){
+            function sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
             }
 
-        },*/
+            console.log("[currency store] loadSelection started")
+            from_code = from_code.toUpperCase()
+            to_code = to_code.toUpperCase()
+            console.log(from_code+"->"+to_code + " length:" + this.currencies_from_data.length)
+
+            //wait while currencies_from_data is not loaded
+            while(this.currencies_from_data.length == 0){
+                console.log("waiting for currencies_from_data")
+                await sleep(1000);
+            }
+
+
+
+            for (var i = 0; i < this.currencies_from_data.length; i++) {
+                for (var j = 0; j < this.currencies_from_data[i].tag_currencies.length; j++) {
+                    if (this.currencies_from_data[i].tag_currencies[j].code_name == from_code) {
+                        this.currencies_from_data[i].tag_currencies[j].selected = true
+                        this.from_code_selected = from_code
+                        this.fromCurrencyName = this.currencies_from_data[i].tag_currencies[j].name
+                        console.log("[currency store] FromCurrency selected:" + this.fromCurrencyName + " " + this.from_code_selected)
+                    } else {
+                        this.currencies_from_data[i].tag_currencies[j].selected = false
+                    }
+                }
+            }
+
+            for (var i = 0; i < this.currencies_to_data.length; i++) {
+                for (var j = 0; j < this.currencies_to_data[i].tag_currencies.length; j++) {
+                    if (this.currencies_to_data[i].tag_currencies[j].code_name == to_code) {
+                        this.currencies_to_data[i].tag_currencies[j].selected = true
+                        this.to_code_selected = to_code
+                        this.to_code_selected = from_code
+                        this.toCurrencyName = this.currencies_from_data[i].tag_currencies[j].name
+                        console.log("[currency store] ToCurrency selected:" + this.toCurrencyName + " " + this.to_code_selected)
+                    } else {
+                        this.currencies_to_data[i].tag_currencies[j].selected = false
+                    }
+                }
+            }
+        },
+
         clearSelections() {
             this.from_code_selected = null
             this.fromCurrencyName  = null

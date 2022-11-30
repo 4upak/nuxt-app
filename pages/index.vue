@@ -14,7 +14,7 @@
       </v-col>
       <v-col cols="12" md="7">
           <v-responsive >
-            <!--<top-exchangers /> -->
+            <top-exchangers />
           </v-responsive>
       </v-col>
 
@@ -33,12 +33,12 @@ import { mapActions } from 'pinia'
 import {useCurrencyStore} from '@/stores/CurrencyStore'
 
 import LeftBar  from "@/components/LeftBar";
-//import TopExchangers from "@/components/TopExchangers";
+import TopExchangers from "@/components/TopExchangers";
 
 export default {
   components: {
     'left-bar': LeftBar,
-    //'top-exchangers': TopExchangers
+    'top-exchangers': TopExchangers
 
 
   },
@@ -51,12 +51,14 @@ export default {
     }
   },
   methods:{
-    ...mapActions(useCurrencyStore, ['clearSelections'])
+    ...mapActions(useCurrencyStore, ['clearSelections', 'getCurrencies'])
   },
   mounted() {
     this.clearSelections()
     console.log('[index page] selection cleared')
 
+    console.log("[index page] get currencies")
+    this.getCurrencies()
   },
 
 

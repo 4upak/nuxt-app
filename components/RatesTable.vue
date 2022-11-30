@@ -1,10 +1,10 @@
 <template>
-  <div v-if="getRatesResult.length > 0">
+  <div v-if="rates.length > 0">
   <v-col
       class="d-flex align-center rate_result_cols"
-      v-if="getRatesResult.length > 0"
+      v-if="rates.length > 0"
   >
-    <v-row class="rate_result_cols_header" v-if="!getMobileCheck">
+    <v-row class="rate_result_cols_header" v-if="!isMobile">
       <v-col cols="12" md="2">
         Exchange
       </v-col>
@@ -23,11 +23,11 @@
     </v-row>
   </v-col>
     <template
-        v-for="item in getRatesResult"
+        v-for="item in rates"
         :key="item.id"
 
         >
-      <v-col v-if = "!getMobileCheck">
+      <v-col v-if = "!isMobile">
         <v-row class="rate_result_cols_header_seccond">
           <v-col cols="12" md="2">
             {{ item.exchange.name }}
@@ -48,7 +48,7 @@
           </v-col>-->
         </v-row>
       </v-col>
-      <div class="rate_view_mobile" v-if="getMobileCheck">
+      <div class="rate_view_mobile" v-if="isMobile">
         <v-card
             class="rate_card_mobile_view"
         >
@@ -89,51 +89,10 @@
         <div style="margin-top: 10px"></div>
       </div>
 
-      <v-divider v-if="!getMobileCheck"></v-divider>
+      <v-divider v-if="!isMobile"></v-divider>
     </template>
   </div>
-  <!--<v-table v-if="getRatesResult.length > 0" id="rates_table">
-    <thead>
-    <tr>
-      <th class="text-left">
-        Unit
-      </th>
-      <th class="text-left">
-        Give
-      </th>
-      <th class="text-left">
-        Get
-      </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr
-      v-for="item in getRatesResult"
-      :key="item.id"
-    >
-      <td class="unit_name">
-        {{ item.exchange.name }}
-        <v-btn
-            color="white"
-            prepend-icon="mdi-cloud-upload"
-            width="120"
-            height="25"
-            class="change_click_button"
-        >
-          Exchange
-        </v-btn>
-      </td>
-      <td class="give">{{ item.from_rate}} <span class="from_currency">{{item.from_currency.name}}</span><br>
-        <span class="min"><b>Min:</b> {{item.min}}</span> |
-        <span class="max"><b>Max:</b> {{item.max}}</span>
-      </td>
-      <td class="get">
-        {{ item.to_rate}}<span class="to_currency">{{item.to_currency.name}}</span>
-        <span class="min"><b>Reserve:</b>{{ item.reserve}}</span>
-      </td>
-    </tr>
-    </tbody>
-  </v-table>-->
+
 
 
   <v-progress-linear
@@ -144,23 +103,67 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapState, mapActions} from 'pinia'
+import {useRatesStore} from '../stores/RatesStore'
+import {useMainStore} from '@/stores/MainStore'
+import {useCurrencyStore} from '@/stores/CurrencyStore'
+
+const currency_store = useCurrencyStore()
+const rates_store = useRatesStore()
+const unsubscribe = currency_store.$onAction(
+    ({
+       name, // name of the action
+       store, // store instance, same as `someStore`
+       args, // array of parameters passed to the action
+       after, // hook after the action returns or resolves
+       onError, // hook if the action throws or rejects
+     }) => {
+      // a shared variable for this specific action call
+      const startTime = Date.now()
+      // this will trigger before an action on `store` is executed
+      console.log('before action', name, args)
+      if(name === 'setSelection'){
+        rates_store.rates = []
+      }
+
+      // this will trigger if the action succeeds and after it has fully run.
+      // it waits for any returned promised
+      after((result) => {
+        console.log('after action', name, args, result)
+        if(name === 'setSelection' && currency_store.from_code_selected && currency_store.to_code_selected){
+          rates_store.getRates(currency_store.from_code_selected, currency_store.to_code_selected)
+        }
+
+
+      })
+
+      // this will trigger if the action throws or returns a promise that rejects
+      onError((error) => {
+        console.error(error)
+      })
+    }
+)
+
 
 export default {
   name: "RatesTable",
   data () {
     return {
-      desserts: [
-        {
-          name: 'Frozen Yogurt',
-          calories: 159,
-        },
-      ],
+
     }
   },
   computed: {
-    ...mapGetters(["getRatesResult","getMobileCheck"]),
+    ...mapState(useRatesStore,["rates"]),
+    ...mapState(useMainStore,["isMobile"]),
   },
+  methods: {
+    ...mapActions(useRatesStore,["getRates"]),
+  },
+  mounted() {
+    console.log('[Ratestable mounted}' + this.$route.params.from_code + " -> " + this.$route.params.to_code)
+
+    this.getRates(this.$route.params.from_code, this.$route.params.to_code)
+  }
 }
 </script>
 

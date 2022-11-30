@@ -14,7 +14,7 @@
       <v-col cols="12" md="7">
         <v-card>
           <v-responsive >
-              <!--<rates-table />-->
+              <rates-table />
           </v-responsive>
         </v-card>
       </v-col>
@@ -30,7 +30,7 @@
 <script>
 
 import LeftBar  from "@/components/LeftBar";
-//import RatesTable from "@/components/RatesTable";
+import RatesTable from "@/components/RatesTable";
 
 import { mapState, mapActions } from 'pinia'
 import {useCurrencyStore} from '@/stores/CurrencyStore'
@@ -41,7 +41,7 @@ export default {
   name: "MainPage",
   components: {
     'left-bar': LeftBar,
-    //'rates-table': RatesTable,
+    'rates-table': RatesTable,
   },
   data () {
     return {
@@ -56,14 +56,27 @@ export default {
 
   },
   methods: {
-  //  ...mapActions(useCurrencyStore, ['loadSelection'])
+    ...mapActions(useCurrencyStore, ['loadSelection', 'getCurrencies'])
+  },
+  created() {
+
   },
   mounted() {
-    console.log("load selection")
-    //this.loadSelection();
-    console.log(this.fromCurrencyName + " -> " + this.toCurrencyName)
+    console.log("[rates table page created ] get currencies")
+    this.getCurrencies()
 
-  }
+    console.log("[rates paeg mounted]Load Selection")
+    this.loadSelection(this.$route.params.from_code, this.$route.params.to_code)
+    //sleep(1000)
+    // laodSelection after getCurrencies this.currencies_to_data is created
+
+
+
+  },
+  activated() {
+
+
+  },
 
 
 }

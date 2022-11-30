@@ -133,19 +133,15 @@ export default {
     ...mapActions(useCurrencyStore, ['getCurrencies']),
 
     changeColNum(){
-      console.log("[leftbar] changeColNum")
       if(this.isMobile){
-        console.log("[leftbar] col num changed")
         this.cols_num = 6
         this.md = 3
-        console.log("[leftbar] colls changed")
       }
 
     },
 
 
     changeTab() {
-      console.log('Mobile check:' + this.isMobile)
 
       if(this.isMobile && this.from_code_selected != null && this.from_to_selected != null){
         console.log("[leftbar] tab changed")
@@ -156,10 +152,8 @@ export default {
 
 
   },
+
   mounted() {
-    console.log("[leftbar mounted] is mobile var: " + this.isMobile)
-    this.getCurrencies()
-    console.log("[leftbar mounted] get currencies")
     this.changeColNum()
     console.log("[leftbar mounted] get changeColNum")
     this.changeTab()

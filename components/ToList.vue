@@ -42,11 +42,11 @@
                     v-if = "currency.active == true"
                     active-color="green"
 
-                    :class="{ 'v-list-item--active': currency.code_name == this.$route.params.to_code }"
+                    :class="{ 'v-list-item--active': currency.selected == true }"
 
                 >
                   <v-list-item-title>
-                    {{ currency.name }}
+                    [{{currency.selected}}}]{{ currency.name }}
                   </v-list-item-title>
 
                 </v-list-item>
@@ -89,7 +89,7 @@ export default {
   methods: {
     ...mapActions(useCurrencyStore, ['searchingTo', 'setSelection']),
     searchTo() {
-      this.searchingFrom(this.ToSearchItem)
+      this.searchingTo(this.ToSearchItem)
     },
     selectItem(code,name){
       console.log("to code:"+code)

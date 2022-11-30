@@ -42,11 +42,11 @@
                     v-if = "currency.active == true"
                     active-color="green"
 
-                    :class="{ 'v-list-item--active': currency.code_name == this.from_code_selected }"
+                    :class="{ 'v-list-item--active': currency.selected == true }"
 
                 >
                   <v-list-item-title>
-                    {{ currency.name }}
+                    [{{currency.selected}}]{{ currency.name }}
                   </v-list-item-title>
 
                 </v-list-item>

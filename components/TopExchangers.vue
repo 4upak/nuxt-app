@@ -1,10 +1,10 @@
 <template>
   <div>
   <template
-      v-if="getTopExchangers.length > 0"
+      v-if="top_exchangers.length > 0"
   >
     <v-card
-      v-for="(exchanger, i) in getTopExchangers"
+      v-for="(exchanger, i) in top_exchangers"
       :key="i"
       style="margin-bottom: 50px"
 
@@ -19,7 +19,7 @@
       <v-table>
         <thead>
         <tr>
-          <th>Direction</th>
+          <th>Rate</th>
           <th class="text-left">
             Give
           </th>
@@ -59,18 +59,20 @@
 </template>
 
 <script>
-
+import { mapState, mapActions} from 'pinia'
+import {useExchangersStore} from '../stores/ExchangersStore'
 
 export default {
   name: "TopExchangers",
   computed: {
-    ...mapGetters(["getTopExchangers"]),
+    ...mapState(useExchangersStore,['top_exchangers']),
   },
   methods: {
-    ...mapActions(["setTopExchangers"]),
+    ...mapActions(useExchangersStore,["getExchangers"]),
   },
+
   mounted() {
-    this.$store.dispatch('fetchTopExchangers')
+    this.getExchangers()
   },
 
 }

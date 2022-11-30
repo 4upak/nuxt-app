@@ -23,6 +23,7 @@ import BottomNavbar from "@/components/BottomNavbar";
 
 import {mapActions, mapState } from 'pinia'
 import {useMainStore} from '@/stores/MainStore'
+import {useCurrencyStore} from "./stores/CurrencyStore";
 
 export default {
   name: 'App',
@@ -33,6 +34,7 @@ export default {
 
   methods:{
     ...mapActions(useMainStore, ['getMobileCheck']),
+    ...mapActions(useCurrencyStore, ['getCurrencies']),
 
   },
   computed: {
@@ -40,9 +42,11 @@ export default {
   },
   created() {
     this.getMobileCheck()
+
   },
+  mounted() {
 
-
+  }
 
 
 }
