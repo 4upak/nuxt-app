@@ -53,7 +53,6 @@ const unsubscribe = currency_store.$onAction(
         console.log('after action', name, args, result)
         if(name === 'getCurrencies'){
           const route = useRoute()
-
           currency_store.loadSelection(route.params.from_code, route.params.to_code)
         }
         if(name === 'setSelection'){
@@ -101,7 +100,6 @@ export default {
 
   },
   methods: {
-    ...mapActions(useCurrencyStore,[''])
   },
   created() {
 

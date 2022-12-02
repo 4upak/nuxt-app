@@ -143,24 +143,14 @@ export const useCurrencyStore = defineStore('currencies', {
 
         async loadSelection(from_code, to_code){
             if(from_code && to_code) {
-                function sleep(ms) {
-                    return new Promise(resolve => setTimeout(resolve, ms));
-                }
+
+
 
                 console.log("[currency store] loadSelection started")
                 from_code = from_code.toUpperCase()
                 to_code = to_code.toUpperCase()
                 console.log(from_code + "->" + to_code + " length:" + this.currencies_from_data.length)
 
-                //wait while currencies_from_data is not loaded
-                /*var i= 0
-                while (this.currencies_from_data.length == 0) {
-                    console.log("waiting for currencies_from_data")
-                    await sleep(1000);
-                    i++
-                    if(i>5)
-                        break
-                }*/
 
 
 
@@ -182,7 +172,6 @@ export const useCurrencyStore = defineStore('currencies', {
                         if (this.currencies_to_data[i].tag_currencies[j].code_name == to_code) {
                             this.currencies_to_data[i].tag_currencies[j].selected = true
                             this.to_code_selected = to_code
-                            this.to_code_selected = from_code
                             this.toCurrencyName = this.currencies_from_data[i].tag_currencies[j].name
                             console.log("[currency store] ToCurrency selected:" + this.toCurrencyName + " " + this.to_code_selected)
                         } else {
@@ -190,6 +179,7 @@ export const useCurrencyStore = defineStore('currencies', {
                         }
                     }
                 }
+                console.log("Load selections finished:"+this.from_code_selected + "->" + this.to_code_selected)
             }
         },
 
@@ -219,9 +209,9 @@ export const useCurrencyStore = defineStore('currencies', {
             this.from_code_selected = this.to_code_selected
             this.to_code_selected = temp
 
-            temp = this.fromCurrencyName
+            var temp2 = this.fromCurrencyName
             this.fromCurrencyName = this.toCurrencyName
-            this.toCurrencyName = temp
+            this.toCurrencyName = temp2
 
             for (var i = 0; i < this.currencies_from_data.length; i++) {
                 for (var j = 0; j < this.currencies_from_data[i].tag_currencies.length; j++) {

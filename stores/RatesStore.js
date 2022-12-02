@@ -11,6 +11,7 @@ export const useRatesStore = defineStore('rates', {
 
             //from_code to uper case
             if(from_code && to_code){
+                this.rates = []
                 console.log("[get rates store] get rates:"+from_code+"->"+to_code)
                 from_code = from_code.toUpperCase()
                 to_code = to_code.toUpperCase()
