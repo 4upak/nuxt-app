@@ -210,3 +210,9 @@ header .v-tabs{
 .v-expansion-panel-text{
     display: block !important;
 }
+.selected-chips{
+    width:380px; margin:0 auto; margin-top:15px
+}
+.leftbar .mt-5{
+    margin-top: 10px !important;
+}

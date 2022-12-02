@@ -1,4 +1,5 @@
 <template>
+
   <v-text-field
     label="From currency"
     v-model="FromSearchItem"
@@ -9,6 +10,7 @@
   <template
       v-if="FromSearchItem.length > 0"
   >
+    <v-card>
     <template
         v-for="(item, i) in currencies_from_data"
 
@@ -27,6 +29,7 @@
           </template>
 
     </template>
+    </v-card>
 
   </template>
 

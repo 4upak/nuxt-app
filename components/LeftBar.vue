@@ -47,6 +47,7 @@
     <v-card-text>
       <v-window v-model="tab">
         <v-window-item value="one">
+          <selected-chips />
           <v-row
               class="mt-5">
             <v-col :cols="cols_num" :md="md" >
@@ -63,28 +64,15 @@
         </v-window-item>
 
         <v-window-item value="two">
+          <selected-chips />
           <v-row
               class="mt-5">
             <v-col :cols="cols_num" :md="md">
-              <v-alert
-                  density="comfortable"
-                  type="success"
-                  variant="tonal"
-                  v-if="fromCurrencyName"
-              >
-                {{fromCurrencyName}}
-              </v-alert>
+
               <two-from-list />
             </v-col>
             <v-col :cols="cols_num" :md="md">
-              <v-alert
-                  density="comfortable"
-                  type="success"
-                  variant="tonal"
-                  v-if="toCurrencyName"
-              >
-                {{toCurrencyName}}
-              </v-alert>
+
               <two-to-list />
             </v-col>
           </v-row>
@@ -109,6 +97,8 @@ import {useMainStore} from '@/stores/MainStore'
 
 import FromList from "@/components/FromList";
 import ToList from "@/components/ToList";
+import SelectedChips from "@/components/SelectedChips";
+
 
 
 export default {
@@ -127,7 +117,8 @@ export default {
   }),
   components: {
     "from-list" : FromList,
-    "to-list" : ToList
+    "to-list" : ToList,
+    "selected-chips" : SelectedChips
   },
   computed: {
     ...mapState(useMainStore, ['isMobile']),
