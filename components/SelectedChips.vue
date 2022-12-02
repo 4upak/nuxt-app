@@ -13,7 +13,7 @@
     <v-icon
         class="ma-2"
         color="blue"
-        @click="alert('work')"
+        @click="changeCurrencies(); getRates(from_code_selected, to_code_selected);"
         v-if="fromCurrencyName && toCurrencyName"
     >
       mdi-arrow-left-right-bold-outline
@@ -43,11 +43,17 @@
 <script>
 import {mapState, mapActions, mapWritableState} from 'pinia'
 import {useCurrencyStore} from '@/stores/CurrencyStore'
+import {useRatesStore} from "@/stores/RatesStore"
+
 export default {
   name: "SelectedChips",
 
   computed: {
     ...mapState(useCurrencyStore, ['fromCurrencyName', 'toCurrencyName', 'from_code_selected', 'to_code_selected']),
+  },
+  methods: {
+    ...mapActions(useCurrencyStore, ['changeCurrencies']),
+    ...mapActions(useRatesStore, ['getRates']),
   },
 
 }

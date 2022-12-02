@@ -212,6 +212,39 @@ export const useCurrencyStore = defineStore('currencies', {
                     this.toCurrencyName = res.data._rawValue.name
             }
 
+        },
+
+        changeCurrencies(){
+            var temp = this.from_code_selected
+            this.from_code_selected = this.to_code_selected
+            this.to_code_selected = temp
+
+            temp = this.fromCurrencyName
+            this.fromCurrencyName = this.toCurrencyName
+            this.toCurrencyName = temp
+
+            for (var i = 0; i < this.currencies_from_data.length; i++) {
+                for (var j = 0; j < this.currencies_from_data[i].tag_currencies.length; j++) {
+                    if (this.currencies_from_data[i].tag_currencies[j].code_name == this.from_code_selected) {
+                        this.currencies_from_data[i].tag_currencies[j].selected = true
+                    } else {
+                        this.currencies_from_data[i].tag_currencies[j].selected = false
+                    }
+                }
+            }
+
+            for (var i = 0; i < this.currencies_to_data.length; i++) {
+                for (var j = 0; j < this.currencies_to_data[i].tag_currencies.length; j++) {
+                    if (this.currencies_to_data[i].tag_currencies[j].code_name == this.to_code_selected) {
+                        this.currencies_to_data[i].tag_currencies[j].selected = true
+                    } else {
+                        this.currencies_to_data[i].tag_currencies[j].selected = false
+                    }
+                }
+            }
+
+            navigateTo({ path: '/exchange-from-'+this.from_code_selected+'-to-'+ this.to_code_selected})
+
         }
     }
 
