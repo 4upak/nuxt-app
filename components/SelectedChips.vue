@@ -29,6 +29,14 @@
     >
       {{toCurrencyName}}
     </v-chip>
+    <v-icon
+        class="ma-2"
+        color="blue"
+        @click="alert('work')"
+        v-if="fromCurrencyName && toCurrencyName"
+    >
+      mdi-square-edit-outline
+    </v-icon>
   </div>
 </template>
 
