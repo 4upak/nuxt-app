@@ -47,7 +47,7 @@ export default {
   name: "SelectedChips",
 
   computed: {
-    ...mapState(useCurrencyStore, ['fromCurrencyName', 'toCurrencyName']),
+    ...mapState(useCurrencyStore, ['fromCurrencyName', 'toCurrencyName', 'from_code_selected', 'to_code_selected']),
   },
 
 }
