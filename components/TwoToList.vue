@@ -10,30 +10,22 @@
       v-if="ToSearchItem.length > 0"
   >
     <template
-        v-for="(item, i) in getCurrenciesToLists"
+        v-for="(item, i) in currencies_to_data"
 
     >
-      <template
 
-          v-if="getCurrenciesToLists.length > 0 && item.active == true"
-      >
-        <v-list density="compact"
-                :key="i"
-        >
           <template v-for="(currency, j) in item.tag_currencies">
             <v-list-item
                 :key="j"
                 :value="currency"
                 active-color="primary"
-                @click="this.setToCode(currency.code_name)"
+                @click="setSelection(currency.code_name, currency.name, 'to')"
                 v-if = "currency.active == true"
             >
               <v-list-item-title v-text="currency.name"></v-list-item-title>
             </v-list-item>
           </template>
-        </v-list>
 
-      </template>
     </template>
   </template>
 
@@ -43,6 +35,8 @@
 </template>
 
 <script>
+import {mapState, mapActions, mapWritableState} from 'pinia'
+import {useCurrencyStore} from '@/stores/CurrencyStore'
 
 export default {
   name: "ToList",
@@ -51,13 +45,15 @@ export default {
     ToSearchItem: "",
   }),
   computed: {
-    ...mapGetters(["getCurrenciesToLists"]),
+    ...mapState(useCurrencyStore, ['currencies_to_data', 'to_code_selected','toCurrencyName']),
+
   },
   methods: {
-    ...mapActions(["setToCode"]),
+    ...mapActions(useCurrencyStore, ['setSelection','searchingTo']),
     searchTo() {
-      this.$store.dispatch("searchTo", this.ToSearchItem);
+      this.searchingTo(this.ToSearchItem)
     },
+
   },
 
 }

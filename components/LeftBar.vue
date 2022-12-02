@@ -63,30 +63,29 @@
         </v-window-item>
 
         <v-window-item value="two">
-          two
           <v-row
               class="mt-5">
             <v-col :cols="cols_num" :md="md">
-              <!--<v-alert
+              <v-alert
                   density="comfortable"
                   type="success"
                   variant="tonal"
-                  v-if="getFromCurrencyName"
+                  v-if="fromCurrencyName"
               >
-                {{getFromCurrencyName}}
+                {{fromCurrencyName}}
               </v-alert>
-              <two-from-list /> -->
+              <two-from-list />
             </v-col>
             <v-col :cols="cols_num" :md="md">
-              <!--<v-alert
+              <v-alert
                   density="comfortable"
                   type="success"
                   variant="tonal"
-                  v-if="getToCurrencyName"
+                  v-if="toCurrencyName"
               >
-                {{getToCurrencyName}}
+                {{toCurrencyName}}
               </v-alert>
-              <two-to-list />-->
+              <two-to-list />
             </v-col>
           </v-row>
 
@@ -132,7 +131,7 @@ export default {
   },
   computed: {
     ...mapState(useMainStore, ['isMobile']),
-    ...mapState(useCurrencyStore, ['currencies_from_data', 'currencies_to_data', 'from_code_selected', 'to_code_selected']),
+    ...mapState(useCurrencyStore, ['currencies_from_data', 'currencies_to_data', 'from_code_selected', 'to_code_selected','fromCurrencyName', 'toCurrencyName']),
     ...mapWritableState(useCurrencyStore, ['from_code_selected', 'to_code_selected']),
   },
   methods:{

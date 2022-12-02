@@ -87,7 +87,7 @@ export const useCurrencyStore = defineStore('currencies', {
 
             for (i = 0; i < this.currencies_to_data.length; i++) {
                 var flag = 0
-                for (j = 0; j < state.currencies_to_data[i].tag_currencies.length; j++) {
+                for (j = 0; j < this.currencies_to_data[i].tag_currencies.length; j++) {
                     if (this.currencies_to_data[i].tag_currencies[j].active == true) {
                         flag = 1
                     }
@@ -140,6 +140,7 @@ export const useCurrencyStore = defineStore('currencies', {
             }
 
         },
+
         async loadSelection(from_code, to_code){
             if(from_code && to_code) {
                 function sleep(ms) {

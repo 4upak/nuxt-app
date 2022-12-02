@@ -39,7 +39,6 @@ export default {
     ...mapState(useMainStore, ["isMobile"]),
   },
   created() {
-    this.getMobileCheck()
 
   },
   mounted() {
