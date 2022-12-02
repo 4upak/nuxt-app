@@ -8,29 +8,39 @@
   </v-text-field>
 
 
-  <v-expansion-panels
+    <v-expansion-panels
       v-model="panel"
       multiple
-      variant="accordion"
       v-if="currencies_to_data.length > 0"
+      aria-expanded="true"
   >
     <template
         v-for="(item, i) in currencies_to_data"
     >
-      <v-expansion-panel
+
+        <v-expansion-panel
           :key="i"
           v-if="item.active == true"
           color="primary"
+
+          aria-expanded="true"
       >
         <v-expansion-panel-title
             color="blue"
-        >{{item.name}}</v-expansion-panel-title>
+        >
+          {{item.name}}
+        </v-expansion-panel-title>
+
+        <v-expansion-panel-text>
           <div
               :key="i"
               v-if="currencies_to_data.length > 0 && item.active == true"
+
           >
             <v-list
                 density="compact"
+
+
             >
               <template v-for="(currency, j) in item.tag_currencies">
                 <v-list-item
@@ -38,13 +48,15 @@
                     :value="currency"
 
                     @click="selectItem(currency.code_name, currency.name);"
+                    @touchstart="selectItem(currency.code_name, currency.name);"
                     v-if = "currency.active == true"
                     active-color="green"
 
                     :class="{ 'v-list-item--active': currency.selected == true }"
 
+
                 >
-                  <v-list-item-title>
+                  <v-list-item-title >
                     {{ currency.name }}
                   </v-list-item-title>
 
@@ -53,9 +65,11 @@
             </v-list>
           </div>
 
+        </v-expansion-panel-text>
       </v-expansion-panel>
     </template>
   </v-expansion-panels>
+
 
 
 
@@ -79,7 +93,8 @@ export default {
   data: () => ({
     toSelectedItem: 0,
     ToSearchItem: "",
-    panel: [0,1,2,3,4,5,6],
+    panel: [0],
+
   }),
   computed: {
     ...mapState(useCurrencyStore, ['currencies_to_data']),

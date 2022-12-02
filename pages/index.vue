@@ -55,6 +55,11 @@ export default {
     console.log('[index page] selection cleared')
 
   },
+  loading: {
+    height: '10px',
+    rtl: true,
+    continuous: true
+  }
 
 
 }

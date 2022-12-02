@@ -15,6 +15,7 @@ export default defineNuxtConfig({
         '@mdi/font/css/materialdesignicons.min.css',
     ],
 
+
     build: {
         transpile: ['vuetify'],
 
@@ -24,6 +25,14 @@ export default defineNuxtConfig({
             'process.env.DEBUG': false,
         },
     },
+    runtimeConfig: {
+
+        public:{
+            API_BASE_URL: 'https://services.digichanger.pro/',
+        }
+    },
+
+
 
 
 

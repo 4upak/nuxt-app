@@ -46,8 +46,8 @@
           >
             Login
           </v-btn>
-
-          <v-menu
+          <client-only>
+            <v-menu
                 transition="slide-y-transition"
                 v-if="isMobile"
             >
@@ -95,6 +95,7 @@
 
               </v-list>
             </v-menu>
+          </client-only>
 
         </div>
 

@@ -2,13 +2,15 @@ import { defineStore } from 'pinia'
 
 export const useExchangersStore = defineStore('exchangers', {
     state: () => ({
-        api_domain:'https://services.digichanger.pro/',
+
         top_exchangers: [],
 
     }),
     actions: {
         async getExchangers() {
-            const res = await useFetch(this.api_domain + 'digimon/api/exchanges/')
+            // get API_BASE_URL
+            const runtimeConfig = useRuntimeConfig()
+            const res = await useFetch(runtimeConfig.public.API_BASE_URL + 'digimon/api/exchanges/')
             this.top_exchangers = res.data._rawValue
         }
     }

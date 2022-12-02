@@ -2,8 +2,8 @@ import { defineStore } from 'pinia'
 
 export const useRatesStore = defineStore('rates', {
     state: () => ({
-        api_domain:'https://services.digichanger.pro/',
         rates: [],
+
 
     }),
     actions: {
@@ -14,7 +14,9 @@ export const useRatesStore = defineStore('rates', {
                 console.log("[get rates store] get rates:"+from_code+"->"+to_code)
                 from_code = from_code.toUpperCase()
                 to_code = to_code.toUpperCase()
-                const res = await useFetch(this.api_domain + 'digimon/api/exchanges/'+from_code+'/'+to_code+'/')
+                //get VUE_APP_API_DOMAIN from .env
+                const runtimeConfig = useRuntimeConfig()
+                const res = await useFetch(runtimeConfig.public.API_BASE_URL + 'digimon/api/exchanges/'+from_code+'/'+to_code+'/')
                 this.rates = res.data._rawValue
             }
         }

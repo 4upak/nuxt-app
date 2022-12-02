@@ -147,23 +147,17 @@ export default {
 
 
     changeTab() {
-
-      if(this.isMobile && this.from_code_selected != null && this.from_to_selected != null){
+      if(this.isMobile && this.from_code_selected != null && this.to_code_selected != null){
         console.log("[leftbar] tab changed")
         this.tab = 'two'
       }
 
     },
-
-
   },
 
   mounted() {
     this.changeColNum()
-    console.log("[leftbar mounted] get changeColNum")
     this.changeTab()
-    console.log("[leftbar mounted] changeTab")
-
   }
 
 };

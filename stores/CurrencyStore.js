@@ -6,7 +6,7 @@ import { defineStore } from 'pinia'
 // the first argument is a unique id of the store across your application
 export const useCurrencyStore = defineStore('currencies', {
     state: () => ({
-        api_domain:'https://services.digichanger.pro/',
+
         isMobile: false,
         currencies_from_data: [],
         currencies_to_data : [],
@@ -18,10 +18,15 @@ export const useCurrencyStore = defineStore('currencies', {
 
     actions: {
         async getCurrencies() {
+            //get VUE_APP_API_DOMAIN from .env
+
 
             console.log('[currecny store] get currencies ')
             if(this.from_code_selected == null && this.to_code_selected == null) {
-                const res = await useFetch(this.api_domain + 'digimon/api/cryptotags/')
+
+
+                const runtimeConfig = useRuntimeConfig()
+                const res = await useFetch(runtimeConfig.public.API_BASE_URL + 'digimon/api/cryptotags/')
                 this.currencies_from_data = JSON.parse(JSON.stringify(res.data._rawValue))
                 var temp = this.currencies_from_data[0]
                 this.currencies_from_data[0] = this.currencies_from_data[1]
@@ -147,10 +152,15 @@ export const useCurrencyStore = defineStore('currencies', {
                 console.log(from_code + "->" + to_code + " length:" + this.currencies_from_data.length)
 
                 //wait while currencies_from_data is not loaded
+                /*var i= 0
                 while (this.currencies_from_data.length == 0) {
                     console.log("waiting for currencies_from_data")
                     await sleep(1000);
-                }
+                    i++
+                    if(i>5)
+                        break
+                }*/
+
 
 
                 for (var i = 0; i < this.currencies_from_data.length; i++) {
@@ -187,6 +197,19 @@ export const useCurrencyStore = defineStore('currencies', {
             this.fromCurrencyName  = null
             this.to_code_selected = null
             this.toCurrencyName = null
+
+        },
+
+        async currencyInfo(code, type) {
+            if(code && type) {
+                const runtimeConfig = useRuntimeConfig()
+                const res = await useFetch(runtimeConfig.public.API_BASE_URL + 'digimon/api/' + code + '/')
+                //console.log(res)
+                if (type == 'from')
+                    this.fromCurrencyName = res.data._rawValue.name
+                if (type == 'to')
+                    this.toCurrencyName = res.data._rawValue.name
+            }
 
         }
     }

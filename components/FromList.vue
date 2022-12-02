@@ -11,7 +11,7 @@
   <v-expansion-panels
       v-model="panel"
       multiple
-      variant="accordion"
+
       v-if="currencies_from_data.length > 0"
   >
     <template
@@ -27,7 +27,7 @@
         <v-expansion-panel-title
             color="blue"
         >{{item.name}}</v-expansion-panel-title>
-
+        <v-expansion-panel-text>
           <div
               :key="i"
               v-if="currencies_from_data.length > 0 && item.active == true"
@@ -41,6 +41,8 @@
                     :value="currency"
 
                     @click="selectItem(currency.code_name, currency.name);"
+
+                    @touchstart="selectItem(currency.code_name, currency.name);"
                     v-if = "currency.active == true"
                     active-color="green"
 
@@ -56,11 +58,12 @@
             </v-list>
           </div>
 
-
+        </v-expansion-panel-text>
       </v-expansion-panel>
 
     </template>
   </v-expansion-panels>
+
 
 
 
@@ -88,7 +91,7 @@ export default {
 data: () => ({
   fromSelectedItem: 0,
   FromSearchItem: "",
-  panel: [0, 1,2,3,4,5,6],
+  panel: [0],
 }),
 computed: {
   ...mapState(useCurrencyStore, ['currencies_from_data']),

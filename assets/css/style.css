@@ -207,3 +207,6 @@ header .v-tabs{
 .top-navbar a.active{
     font-weight: bold;
 }
+.v-expansion-panel-text{
+    display: block !important;
+}

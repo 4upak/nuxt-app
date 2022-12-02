@@ -1,9 +1,7 @@
 <template>
-
+  <h1 class="text-center rates_page_title" v-if="fromCurrencyName && toCurrencyName">Exchange <span class="blue_span">{{fromCurrencyName}}</span> to  <span class="blue_span">{{toCurrencyName}}</span></h1>
   <v-container class="lighten-5">
-    <!-- title -->
-    <!--<h1 class="text-center rates_page_title" v-if="fromCurrencyName && toCurrencyName">Exchange <span class="blue_span">{{fromCurrencyName}}</span> to <span class="blue_span">{{toCurrencyName}}</span></h1>-->
-    <!-- 3 rows of articles -->
+
     <v-row
       class="mt-5"
 
@@ -18,9 +16,6 @@
           </v-responsive>
         </v-card>
       </v-col>
-
-
-
     </v-row>
 
 
@@ -52,14 +47,20 @@ const unsubscribe = currency_store.$onAction(
 
       const startTime = Date.now()
       console.log('before action', name, args)
-      if(name === 'setSelection'){
-        console.log('setSelection action')
-        rates_store.rates = []
-        rates_store.getRates(currency_store.from_code_selected, currency_store.to_code_selected)
-      }
+
 
       after((result) => {
         console.log('after action', name, args, result)
+        if(name === 'getCurrencies'){
+          const route = useRoute()
+
+          currency_store.loadSelection(route.params.from_code, route.params.to_code)
+        }
+        if(name === 'setSelection'){
+          console.log('setSelection action')
+          rates_store.rates = []
+          rates_store.getRates(currency_store.from_code_selected, currency_store.to_code_selected)
+        }
 
 
       })
@@ -77,18 +78,12 @@ export default {
 
     const currencyStore = useCurrencyStore()
     const route = useRoute()
-    currencyStore.loadSelection(route.params.from_code, route.params.to_code)
 
-    return {
-      fromCurrencyName: currencyStore.fromCurrencyName,
-      toCurrencyName: currencyStore.toCurrencyName
-    }
-
-
+    currencyStore.currencyInfo(route.params.from_code,"from")
+    currencyStore.currencyInfo(route.params.to_code,"to")
 
 
   },
-
 
 
   name: "MainPage",
@@ -102,25 +97,15 @@ export default {
     }
   },
   computed: {
-
+    ...mapState(useCurrencyStore,["fromCurrencyName", "toCurrencyName"]),
 
   },
-
   methods: {
     ...mapActions(useCurrencyStore,[''])
   },
   created() {
 
   },
-
-
-  mounted() {
-
-
-  },
-
-
-
 
 }
 </script>

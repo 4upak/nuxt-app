@@ -9,12 +9,15 @@ export const useMainStore = defineStore('main', {
 
     actions: {
         async getMobileCheck() {
-            if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                this.isMobile = true
-                return true
-            } else {
-                this.isMobile = false
-                return false
+            //if navigator is defined
+            if (typeof(navigator) !== 'undefined') {
+                if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                    this.isMobile = true
+                    return true
+                } else {
+                    this.isMobile = false
+                    return false
+                }
             }
         },
     },
