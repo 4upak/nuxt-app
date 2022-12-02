@@ -50,12 +50,12 @@
           <selected-chips />
           <v-row
               class="mt-5">
-            <v-col :cols="cols_num" :md="md" >
+            <v-col :cols="list_cols_num" :md="list_md" >
 
               <from-list />
 
             </v-col>
-            <v-col :cols="cols_num" :md="md" >
+            <v-col :cols="list_cols_num" :md="list_md" >
 
               <to-list />
 
@@ -67,11 +67,11 @@
           <selected-chips />
           <v-row
               class="mt-5">
-            <v-col :cols="cols_num" :md="md">
+            <v-col :cols="list_cols_num" :md="list_md">
 
               <two-from-list />
             </v-col>
-            <v-col :cols="cols_num" :md="md">
+            <v-col :cols="list_cols_num" :md="list_md">
 
               <two-to-list />
             </v-col>
@@ -105,14 +105,14 @@ export default {
   setup(){
     const currencyStore = useCurrencyStore()
     currencyStore.getCurrencies()
+    const mainStore = useMainStore()
+    mainStore.changeColNum()
 
     return {}
   },
   name: "LeftBar",
   data: () => ({
     tab: 'one',
-    "cols_num": 12,
-    "md": 6
 
   }),
   components: {
@@ -121,19 +121,12 @@ export default {
     "selected-chips" : SelectedChips
   },
   computed: {
-    ...mapState(useMainStore, ['isMobile']),
+    ...mapState(useMainStore, ['isMobile','list_cols_num','list_md']),
     ...mapState(useCurrencyStore, ['currencies_from_data', 'currencies_to_data', 'from_code_selected', 'to_code_selected','fromCurrencyName', 'toCurrencyName']),
     ...mapWritableState(useCurrencyStore, ['from_code_selected', 'to_code_selected']),
   },
   methods:{
 
-    changeColNum(){
-      if(this.isMobile){
-        this.cols_num = 6
-        this.md = 3
-      }
-
-    },
 
 
     changeTab() {
@@ -141,12 +134,10 @@ export default {
         console.log("[leftbar] tab changed")
         this.tab = 'two'
       }
-
-    },
+    }
   },
 
   mounted() {
-    this.changeColNum()
     this.changeTab()
   }
 

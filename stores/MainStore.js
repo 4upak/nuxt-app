@@ -12,22 +12,18 @@ export const useMainStore = defineStore('main', {
         isDesktop: false,
         from_list_panel: [0,1,2,3,4,5,6],
         to_list_panel: [0,1,2,3,4,5,6],
+        list_cols_num: 12,
+        list_md: 6
     }),
 
     actions: {
-        async getMobileCheck(req) {
-            //if navigator is defined
-            /*if (typeof(navigator) !== 'undefined') {
-                if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                    this.isMobile = true
-                    return true
-                } else {
-                    this.isMobile = false
-                    return false
-                }
-            }*/
 
-        },
+        changeColNum() {
+            if (this.isMobile) {
+                this.list_cols_num = 6
+                this.list_md = 3
+            }
+        }
     },
 
 

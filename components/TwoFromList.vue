@@ -21,7 +21,7 @@
                 :key="j"
                 :value="currency"
                 active-color="primary"
-                @click="setSelection(currency.code_name, currency.name, 'from')"
+                @click="setSelection(currency.code_name, currency.name, 'from');FromSearchItem= '';"
                 v-if = "currency.active == true"
             >
               <v-list-item-title v-text="currency.name"></v-list-item-title>
