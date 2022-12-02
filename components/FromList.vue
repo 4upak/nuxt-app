@@ -9,10 +9,10 @@
 
 
   <v-expansion-panels
-      v-model="panel"
+      v-model="from_list_panel"
       multiple
-
       v-if="currencies_from_data.length > 0"
+      variant="accordion"
   >
     <template
         v-for="(item, i) in currencies_from_data"
@@ -80,41 +80,39 @@
 <script>
 import { mapState, mapWritableState, mapActions } from 'pinia'
 import {useCurrencyStore} from '@/stores/CurrencyStore'
+import {useMainStore} from "@/stores/MainStore";
+
 
 export default {
-
+  setup() {
+    const main_store = useMainStore()
+    main_store.from_list_panel = [0]
+  },
   name: 'FromList',
 
-
-
-
-data: () => ({
-  fromSelectedItem: 0,
-  FromSearchItem: "",
-  panel: [0],
-}),
-computed: {
-  ...mapState(useCurrencyStore, ['currencies_from_data']),
-  ...mapWritableState(useCurrencyStore, ['from_code_selected', 'fromCurrencyName']),
-},
-methods: {
-  ...mapActions(useCurrencyStore, ['searchingFrom','setSelection']),
-  searchFrom() {
-    this.searchingFrom(this.FromSearchItem)
+  data: () => ({
+    fromSelectedItem: 0,
+    FromSearchItem: "",
+  }),
+  computed: {
+    ...mapState(useCurrencyStore, ['currencies_from_data']),
+    ...mapWritableState(useMainStore, ['from_list_panel']),
+    ...mapWritableState(useCurrencyStore, ['from_code_selected', 'fromCurrencyName']),
   },
+  methods: {
+    ...mapActions(useCurrencyStore, ['searchingFrom','setSelection']),
+    searchFrom() {
+      this.searchingFrom(this.FromSearchItem)
+    },
 
-  selectItem(code,name){
-    this.setSelection(code,name,"from")
-
-
-
+    selectItem(code,name){
+      this.setSelection(code,name,"from")
+    },
   },
   mounted() {
-    console.log("get router params", this.$route.params.from_code)
-    console.log(this.$route.params)
+    console.log("FromList mounted")
+    this.from_list_panel = [0,1,2,3,4,5,6]
   }
-
-},
 
 }
 </script>

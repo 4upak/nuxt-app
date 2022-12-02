@@ -9,10 +9,10 @@
 
 
     <v-expansion-panels
-      v-model="panel"
+      v-model="to_list_panel"
       multiple
       v-if="currencies_to_data.length > 0"
-      aria-expanded="true"
+      variant="accordion"
   >
     <template
         v-for="(item, i) in currencies_to_data"
@@ -85,19 +85,23 @@
 <script>
 import { mapState, mapWritableState, mapActions } from 'pinia'
 import {useCurrencyStore} from '@/stores/CurrencyStore'
+import {useMainStore} from "../stores/MainStore";
 
 export default {
+  setup() {
+    const main_store = useMainStore()
+    main_store.to_list_panel = [0]
+  },
 
   name: "ToList",
 
   data: () => ({
     toSelectedItem: 0,
     ToSearchItem: "",
-    panel: [0],
-
   }),
   computed: {
     ...mapState(useCurrencyStore, ['currencies_to_data']),
+    ...mapWritableState(useMainStore, ['to_list_panel']),
     ...mapWritableState(useCurrencyStore, ['to_code_selected', 'toCurrencyName']),
   },
   methods: {
@@ -110,6 +114,9 @@ export default {
       this.setSelection(code,name,"to")
     }
   },
+  mounted() {
+    this.to_list_panel = [0,1,2,3,4,5,6]
+  }
 
 }
 </script>

@@ -29,7 +29,7 @@
         :key="item.id"
 
         >
-        <v-col v-if = "!isMobile">
+        <v-col v-if="!isMobile">
           <v-row class="rate_result_cols_header_seccond">
             <v-col cols="12" md="2">
               {{ item.exchange.name }}
@@ -103,9 +103,10 @@
 
 <script>
 import { mapState, mapActions} from 'pinia'
+
 import {useRatesStore} from '../stores/RatesStore'
 import {useCurrencyStore} from '../stores/CurrencyStore'
-import {useMainStore} from '@/stores/MainStore'
+import {useMainStore} from '../stores/MainStore'
 
 export default {
 
@@ -114,9 +115,12 @@ export default {
     const route = useRoute()
     const from_code = route.params.from_code
     const to_code = route.params.to_code
+
     console.log("rates table console")
     console.log(from_code, to_code)
     rates_store.getRates(from_code, to_code)
+
+
 
   },
 
