@@ -13,7 +13,7 @@
     <v-icon
         class="ma-2"
         color="blue"
-        @click="changeCurrencies(); getRates(from_code_selected, to_code_selected);"
+        @click="changeCurrencies(); getRates(from_code_selected, to_code_selected); loadSelection(from_code_selected, to_code_selected)"
         v-if="fromCurrencyName && toCurrencyName"
     >
       mdi-arrow-left-right-bold-outline
@@ -52,7 +52,7 @@ export default {
     ...mapState(useCurrencyStore, ['fromCurrencyName', 'toCurrencyName', 'from_code_selected', 'to_code_selected']),
   },
   methods: {
-    ...mapActions(useCurrencyStore, ['changeCurrencies']),
+    ...mapActions(useCurrencyStore, ['changeCurrencies','loadSelection']),
     ...mapActions(useRatesStore, ['getRates']),
   },
 

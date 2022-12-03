@@ -179,7 +179,7 @@ export const useCurrencyStore = defineStore('currencies', {
                         }
                     }
                 }
-                console.log("Load selections finished:"+this.from_code_selected + "->" + this.to_code_selected)
+                console.log("Load selections finished:"+this.from_code_selected.toLowerCase() + "->" + this.to_code_selected.toLowerCase())
             }
         },
 

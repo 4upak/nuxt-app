@@ -100,9 +100,14 @@ export default {
 
   },
   methods: {
+    ...mapActions(useCurrencyStore,["loadSelection"]),
   },
   created() {
 
+
+  },
+  mounted() {
+    this.loadSelection(this.$route.params.from_code, this.$route.params.to_code)
   },
 
 }
