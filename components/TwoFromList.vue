@@ -4,6 +4,7 @@
     label="From currency"
     v-model="FromSearchItem"
     @input="searchFrom"
+    v-if="!to_code_selected || !from_code_selected"
 
   >
   </v-text-field>
@@ -20,7 +21,6 @@
             <v-list-item
                 :key="j"
                 :value="currency"
-                active-color="primary"
                 @click="setSelection(currency.code_name, currency.name, 'from');FromSearchItem= '';"
                 v-if = "currency.active == true"
             >
@@ -49,7 +49,7 @@ export default {
     FromSearchItem: "",
   }),
   computed: {
-    ...mapState(useCurrencyStore, ['currencies_from_data', 'from_code_selected','fromCurrencyName']),
+    ...mapState(useCurrencyStore, ['currencies_from_data', 'from_code_selected', 'to_code_selected','fromCurrencyName']),
   },
   methods: {
     ...mapActions(useCurrencyStore, ['setSelection','searchingFrom']),

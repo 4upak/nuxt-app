@@ -1,5 +1,6 @@
-<template v-if="fromCurrencyName">
-  <div class="align-center align-self-center selected-chips" style=" ">
+<template>
+
+  <div class="align-center align-self-center selected-chips" style=" " v-if="to_code_selected && from_code_selected">
     <v-chip
         class="ma-2"
         close
@@ -32,7 +33,7 @@
     <v-icon
         class="ma-2"
         color="blue"
-        @click="alert('work')"
+        @click="clearSelection()"
         v-if="fromCurrencyName && toCurrencyName"
     >
       mdi-square-edit-outline
@@ -52,7 +53,7 @@ export default {
     ...mapState(useCurrencyStore, ['fromCurrencyName', 'toCurrencyName', 'from_code_selected', 'to_code_selected']),
   },
   methods: {
-    ...mapActions(useCurrencyStore, ['changeCurrencies','loadSelection']),
+    ...mapActions(useCurrencyStore, ['changeCurrencies','loadSelection','clearSelection']),
     ...mapActions(useRatesStore, ['getRates']),
   },
 

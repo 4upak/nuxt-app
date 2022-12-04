@@ -235,6 +235,24 @@ export const useCurrencyStore = defineStore('currencies', {
 
             navigateTo({ path: '/exchange-from-'+this.from_code_selected+'-to-'+ this.to_code_selected})
 
+        },
+        clearSelection(){
+            this.from_code_selected = null
+            this.to_code_selected = null
+            //this.fromCurrencyName = null
+            //this.toCurrencyName = null
+            for (var i = 0; i < this.currencies_from_data.length; i++) {
+                for (var j = 0; j < this.currencies_from_data[i].tag_currencies.length; j++) {
+                    this.currencies_from_data[i].tag_currencies[j].selected = false
+                }
+            }
+
+            for (var i = 0; i < this.currencies_to_data.length; i++) {
+                for (var j = 0; j < this.currencies_to_data[i].tag_currencies.length; j++) {
+                    this.currencies_to_data[i].tag_currencies[j].selected = false
+                }
+            }
+            navigateTo({ path: '/'})
         }
     }
 

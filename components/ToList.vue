@@ -4,6 +4,7 @@
       v-model="ToSearchItem"
       @input="searchTo"
       id="to-list"
+      v-if="!to_code_selected || !from_code_selected"
   >
   </v-text-field>
 
@@ -50,8 +51,7 @@
                     @click="selectItem(currency.code_name, currency.name);"
                     @touchstart="selectItem(currency.code_name, currency.name);"
                     v-if = "currency.active == true"
-                    active-color="green"
-
+                    active-class="boo"
                     :class="{ 'v-list-item--active': currency.selected == true }"
 
 
@@ -102,7 +102,7 @@ export default {
   computed: {
     ...mapState(useCurrencyStore, ['currencies_to_data']),
     ...mapWritableState(useMainStore, ['to_list_panel']),
-    ...mapWritableState(useCurrencyStore, ['to_code_selected', 'toCurrencyName']),
+    ...mapWritableState(useCurrencyStore, ['to_code_selected', 'from_code_selected','toCurrencyName']),
   },
   methods: {
     ...mapActions(useCurrencyStore, ['searchingTo', 'setSelection']),

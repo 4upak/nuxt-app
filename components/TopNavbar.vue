@@ -30,6 +30,15 @@
 
 
         <div class="header_buttons">
+          <!--<form>
+                  <label for="locale-select">{{ $t('language') }}: </label>
+                  <select id="locale-select" v-model="$i18n.locale">
+                    <option value="en">en</option>
+                    <option value="ru">ru</option>
+                    <option value="uk">uk</option>
+                  </select>
+            </form>-->
+          <SwitchLang @changed="onChange" :initLang="initLang" :options="options" />
           <v-btn
               variant="outlined"
               color="blue"
@@ -111,16 +120,44 @@
 
 import { mapState} from 'pinia'
 import {useMainStore} from '../stores/MainStore'
+import SwitchLang from "vue-switch-lang";
 
 import LogoImg from "@/assets/img/logo.png";
 export default {
+  components: {
+    SwitchLang
+  },
+
   name: "TopNavbar",
   data: () => ({
     logo: LogoImg,
+    initLang: {
+      title: "en",
+      flag: "gb"
+    },
+    options: [
+      {
+        title: "en",
+        flag: "gb"
+      },
+      {
+        title: "ru",
+        flag: "ru"
+      },
+      {
+        title: "ua",
+        flag: "uk"
+      }
+    ]
   }),
   computed: {
     ...mapState(useMainStore, ['isMobile'])
   },
+  methods:{
+    onLangChange(lang) {
+
+    }
+  }
 
 
 };

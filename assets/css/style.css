@@ -211,7 +211,7 @@ header .v-tabs{
     display: block !important;
 }
 .selected-chips{
-    width:450px; margin:0 auto; margin-top:15px;
+    margin:0 auto; margin-top:13px;
 
 }
 .leftbar .mt-5{
@@ -219,9 +219,10 @@ header .v-tabs{
 }
 .leftbar .v-chip{
     font-size: 14px !important;
-    max-width: 130px !important;
-    min-width: 130px !important;
+    width:36%;
     text-align: center;
+    height:50px !important;
+    margin-bottom:13px;
 }
 .leftbar .v-chip__content{
 
