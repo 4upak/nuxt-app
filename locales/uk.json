@@ -1,4 +1,5 @@
 {
   "hello": "привiт!, {name}!",
+  "select_language_label": "Оберiть мову",
   "language": "Мова"
 }

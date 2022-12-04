@@ -3,6 +3,7 @@ export default defineNuxtConfig({
     modules: [
         [
             '@pinia/nuxt',
+            '@nuxt/ui',
         ],
     ],
     css: [
@@ -28,6 +29,7 @@ export default defineNuxtConfig({
             API_BASE_URL: 'https://services.digichanger.pro/',
         }
     },
+
 
 
 

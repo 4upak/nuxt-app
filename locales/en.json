@@ -1,4 +1,5 @@
 {
   "hello": "Hello, {name}!",
+  "select_language_label": "Select language",
   "language": "Language"
 }
