@@ -23,5 +23,7 @@
     "nuxt-i18n": "^6.28.1",
     "pinia": "^2.0.27",
     "sass": "^1.56.1",
+    "vue-flag-icon": "^2.1.0",
+    "vue-switch-lang": "^0.4.0"
   }
 }
