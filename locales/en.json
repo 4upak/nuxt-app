@@ -1,5 +1,21 @@
 {
   "hello": "Hello, {name}!",
   "select_language_label": "Select language",
-  "language": "Language"
+  "lang_name": "English",
+  "language": "Language",
+
+  "home_page_title": "Home",
+  "news_page_title": "News",
+  "exchanges_page_title": "Exchanges",
+  "articles_page_title": "Articles",
+  "faq_page_title": "F.A.Q",
+  "contacts_page_title": "Контакты",
+
+  "company_mission": "Our Service helps to make exchanges safely and quickly",
+  "login": "Login",
+  "create_account": "Create account",
+
+  "tab_title_list": "List",
+  "tab_title_search": "Search",
+  "tab_title_popular": "Popular"
 }

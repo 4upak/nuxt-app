@@ -1,5 +1,21 @@
 {
   "hello": "привiт!, {name}!",
   "select_language_label": "Оберiть мову",
-  "language": "Мова"
+  "lang_name": "Украiнська",
+  "language": "Мова",
+
+  "home_page_title": "Головна",
+  "news_page_title": "Новини",
+  "exchanges_page_title": "Обмiнники",
+  "articles_page_title": "Статтi",
+  "faq_page_title": "F.A.Q",
+  "contacts_page_title": "Контакти",
+
+  "company_mission": "Наш сервiс мопомогає робити обмiни безпечно та швидко",
+  "login": "Вхiд",
+  "create_account": "Створити аккаунт",
+
+  "tab_title_list": "Список",
+  "tab_title_search": "Пошук",
+  "tab_title_popular": "Популярнi"
 }

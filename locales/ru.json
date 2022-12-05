@@ -1,5 +1,21 @@
 {
   "hello": "привет!, {name}!",
   "select_language_label": "Выберете язык",
-  "language": "Язык"
+  "lang_name": "Русский",
+  "language": "Язык",
+
+  "home_page_title": "Главная",
+  "news_page_title": "Новости",
+  "exchanges_page_title": "Обменники",
+  "articles_page_title": "Статьи",
+  "faq_page_title": "F.A.Q",
+  "contacts_page_title": "Контакты",
+
+  "company_mission": "Наш сервис помогает делать обмены безопасно и быстро",
+  "login": "Вход",
+  "create_account": "Создать аккаунт",
+
+  "tab_title_list": "Список",
+  "tab_title_search": "Поиск",
+  "tab_title_popular": "Популярные"
 }

@@ -95,14 +95,14 @@ header .v-tabs{
     width:250px;float:left;
     border:solid 1px #000
 }
-.v-overlay__content .v-list{
+.burger_menu .v-list{
     width: 250px;
     min-height: 500px;
 }
-.v-overlay__content .v-list a:link, .v-overlay__content .v-list a:visited{
+.burger_menu .v-list a:link, .v-overlay__content .v-list a:visited{
     font-size: 20px;
 }
-.v-overlay__content .v-list .v-list-item{
+.burger_menu .v-list .v-list-item{
     height: 40px;
     margin: 10px;
 }

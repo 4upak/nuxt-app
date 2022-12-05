@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>[{{$i18n.locale}}]{{ $t('hello', { name: 'vue-i18n' }) }}</h1>
   <template
       v-if="top_exchangers.length > 0"
   >

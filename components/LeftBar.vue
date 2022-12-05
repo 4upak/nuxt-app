@@ -21,7 +21,7 @@
         >
           mdi-format-list-text
         </v-icon>
-        List
+        {{ $t('tab_title_list') }}
       </v-tab>
       <v-tab value="two" cols="12" md="4">
         <v-icon
@@ -31,7 +31,7 @@
         >
           mdi-text-search
         </v-icon>
-        Search
+        {{ $t('tab_title_search') }}
       </v-tab>
       <v-tab value="three" cols="12" md="4">
         <v-icon
@@ -41,7 +41,7 @@
         >
           mdi-thumb-up
         </v-icon>
-        Popular
+        {{ $t('tab_title_popular') }}
       </v-tab>
     </v-tabs>
     <v-card-text>

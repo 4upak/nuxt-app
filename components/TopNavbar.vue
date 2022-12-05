@@ -1,6 +1,4 @@
-
 <template>
-
     <v-toolbar
       density="compact"
       color="#fff"
@@ -13,33 +11,27 @@
 
         <div
              class="logo"
-        ><a href="/"><img style="width:100px" :src="logo"/></a></div>
+        ><a :href="'/'+$i18n.locale+'/'"><img style="width:100px" :src="logo"/></a></div>
 
         <v-tabs
           align-with-title
           height="80px"
           class="top_toolbar-tabs top-navbar"
         >
-          <v-tab><nuxt-link active-class="active" to="/">Home</nuxt-link></v-tab>
-          <v-tab><nuxt-link active-class="active" to="/news/">News</nuxt-link></v-tab>
-          <v-tab><nuxt-link active-class="active" to="/exchanges/">Exchanges</nuxt-link></v-tab>
-          <v-tab><nuxt-link active-class="active" to="/articles/">Articles</nuxt-link></v-tab>
-          <v-tab><nuxt-link active-class="active" to="/faq/">F.A.Q</nuxt-link></v-tab>
-          <v-tab><nuxt-link active-class="active" to="/contacts/">Contacts</nuxt-link></v-tab>
+          <v-tab><nuxt-link active-class="active" :to="'/'+$i18n.locale+'/'">{{ $t('home_page_title') }}</nuxt-link></v-tab>
+          <v-tab><nuxt-link active-class="active" :to="'/'+$i18n.locale+'/news/'">{{ $t('news_page_title') }}</nuxt-link></v-tab>
+          <v-tab><nuxt-link active-class="active" :to="'/'+$i18n.locale+'/exchanges/'">{{ $t('exchanges_page_title') }}</nuxt-link></v-tab>
+          <v-tab><nuxt-link active-class="active" :to="'/'+$i18n.locale+'/articles/'">{{ $t('articles_page_title') }}</nuxt-link></v-tab>
+          <v-tab><nuxt-link active-class="active" :to="'/'+$i18n.locale+'/faq/'">{{ $t('faq_page_title') }}</nuxt-link></v-tab>
+          <v-tab><nuxt-link active-class="active" :to="'/'+$i18n.locale+'/contacts/'">{{ $t('contacts_page_title') }}</nuxt-link></v-tab>
         </v-tabs>
 
 
         <div class="header_buttons">
-          <form>
-                  <label for="locale-select">{{ $t('language') }}: </label>
-                  <select id="locale-select" v-model="$i18n.locale">
-                    <option value="en">en</option>
-                    <option value="ru">ru</option>
-                    <option value="uk">uk</option>
-                  </select>
-            </form>
+
           <v-menu
               open-on-hover
+              class="lang_selector"
 
           >
             <template v-slot:activator="{ props }">
@@ -48,25 +40,25 @@
                   v-bind="props"
               >
 
-                {{ $t('select_language_label') }}
+                {{ $t('lang_name') }}
               </v-btn>
             </template>
 
             <v-list>
               <v-list-item
-
+                @click="selectLang('en')"
               >
-                <v-list-item-title>En</v-list-item-title>
+                <v-list-item-title>English</v-list-item-title>
               </v-list-item>
               <v-list-item
-
+                  @click="selectLang('ru')"
               >
-                <v-list-item-title>Ru</v-list-item-title>
+                <v-list-item-title>Русский</v-list-item-title>
               </v-list-item>
               <v-list-item
-
+                  @click="selectLang('uk')"
               >
-                <v-list-item-title>Ua</v-list-item-title>
+                <v-list-item-title>Украинский</v-list-item-title>
               </v-list-item>
             </v-list>
           </v-menu>
@@ -78,7 +70,7 @@
               class="ml-3 register_button"
 
           >
-            Create account
+            {{ $t('create_account') }}
           </v-btn>
           <v-btn
               variant="outlined"
@@ -86,12 +78,13 @@
               class="ml-5 login_button"
 
           >
-            Login
+            {{ $t('login') }}
           </v-btn>
-          <client-only>
+
             <v-menu
                 transition="slide-y-transition"
                 v-if="isMobile"
+                class="burger_menu"
             >
               <template v-slot:activator="{ props }" >
                 <v-btn
@@ -137,7 +130,7 @@
 
               </v-list>
             </v-menu>
-          </client-only>
+
 
         </div>
 
@@ -156,13 +149,13 @@ import {useMainStore} from '../stores/MainStore'
 
 
 
+
 import LogoImg from "@/assets/img/logo.png";
 export default {
-
-
   name: "TopNavbar",
   data: () => ({
     logo: LogoImg,
+
 
   }),
   computed: {
@@ -170,8 +163,12 @@ export default {
 
   },
   methods:{
-
-  }
+    selectLang(locale){
+      console.log('selecting lang')
+      this.$i18n.locale = locale
+      localStorage.setItem('lang',locale)
+    },
+  },
 
 
 };

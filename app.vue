@@ -24,8 +24,18 @@ import BottomNavbar from "@/components/BottomNavbar";
 import {mapActions, mapState } from 'pinia'
 import {useMainStore} from '@/stores/MainStore'
 import {useCurrencyStore} from "./stores/CurrencyStore";
+import { useI18n } from 'vue-i18n'
 
 export default {
+  setup(){
+    const route = useRoute()
+    const {t, locale} = useI18n({useScope: 'global'})
+    console.log("Locale:"+route.params.lang)
+
+    if (route.params.lang)
+      locale.value = route.params.lang
+    console.log(t)
+  },
   name: 'App',
   components: {
     topnavbar: TopNavbar,
@@ -42,8 +52,15 @@ export default {
 
   },
   mounted() {
+    var lang = localStorage.getItem(lang)
 
-  }
+    if(lang){
+      console.log("Lang:"+lang)
+      $locale.value = lang
+    }
+
+
+  },
 
 
 }
