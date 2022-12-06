@@ -31,7 +31,7 @@ import RatesTable from "@/components/RatesTable";
 
 import { mapState, mapActions } from 'pinia'
 import {useCurrencyStore} from '@/stores/CurrencyStore'
-import {useRatesStore} from "../../stores/RatesStore";
+import {useRatesStore} from "@/stores/RatesStore";
 
 const currency_store = useCurrencyStore()
 const rates_store = useRatesStore()

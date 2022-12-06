@@ -17,6 +17,7 @@
           align-with-title
           height="80px"
           class="top_toolbar-tabs top-navbar"
+          v-if="$i18n.locale !='en'"
         >
           <v-tab><nuxt-link active-class="active" :to="'/'+$i18n.locale+'/'">{{ $t('home_page_title') }}</nuxt-link></v-tab>
           <v-tab><nuxt-link active-class="active" :to="'/'+$i18n.locale+'/news/'">{{ $t('news_page_title') }}</nuxt-link></v-tab>
@@ -24,6 +25,19 @@
           <v-tab><nuxt-link active-class="active" :to="'/'+$i18n.locale+'/articles/'">{{ $t('articles_page_title') }}</nuxt-link></v-tab>
           <v-tab><nuxt-link active-class="active" :to="'/'+$i18n.locale+'/faq/'">{{ $t('faq_page_title') }}</nuxt-link></v-tab>
           <v-tab><nuxt-link active-class="active" :to="'/'+$i18n.locale+'/contacts/'">{{ $t('contacts_page_title') }}</nuxt-link></v-tab>
+        </v-tabs>
+        <v-tabs
+            align-with-title
+            height="80px"
+            class="top_toolbar-tabs top-navbar"
+            v-else
+        >
+          <v-tab><nuxt-link active-class="active" :to="'/'">{{ $t('home_page_title') }}</nuxt-link></v-tab>
+          <v-tab><nuxt-link active-class="active" :to="'/news/'">{{ $t('news_page_title') }}</nuxt-link></v-tab>
+          <v-tab><nuxt-link active-class="active" :to="'/exchanges/'">{{ $t('exchanges_page_title') }}</nuxt-link></v-tab>
+          <v-tab><nuxt-link active-class="active" :to="'/articles/'">{{ $t('articles_page_title') }}</nuxt-link></v-tab>
+          <v-tab><nuxt-link active-class="active" :to="'/faq/'">{{ $t('faq_page_title') }}</nuxt-link></v-tab>
+          <v-tab><nuxt-link active-class="active" :to="'/contacts/'">{{ $t('contacts_page_title') }}</nuxt-link></v-tab>
         </v-tabs>
 
 
@@ -39,26 +53,39 @@
                   color="primary"
                   v-bind="props"
               >
-
-                {{ $t('lang_name') }}
+                <country-flag country="gb" size='normal' v-if="$i18n.locale=='en'"/>
+                <country-flag country="ua" size='normal' v-if="$i18n.locale=='uk'"/>
+                <country-flag country="ru" size='normal' v-if="$i18n.locale=='ru'"/>
+                <div class="current_language">{{ $t('lang_name') }}</div>
               </v-btn>
             </template>
 
-            <v-list>
+            <v-list class="flags_list">
               <v-list-item
                 @click="selectLang('en')"
               >
-                <v-list-item-title>English</v-list-item-title>
+                  <div class="country_flag"><country-flag country="gb" size='normal'/></div>
+                  <v-list-item-title>
+                    English
+                  </v-list-item-title>
               </v-list-item>
               <v-list-item
                   @click="selectLang('ru')"
               >
-                <v-list-item-title>Русский</v-list-item-title>
+                <div class="country_flag"><country-flag country="ru" size='normal'/></div>
+                  <v-list-item-title>
+                    Русский
+                  </v-list-item-title>
+
               </v-list-item>
               <v-list-item
                   @click="selectLang('uk')"
               >
-                <v-list-item-title>Украинский</v-list-item-title>
+                <div class="country_flag"><country-flag country="ua" size='normal'/></div>
+                  <v-list-item-title>
+                    Украинский
+                  </v-list-item-title>
+
               </v-list-item>
             </v-list>
           </v-menu>
@@ -147,20 +174,22 @@
 import { mapState} from 'pinia'
 import {useMainStore} from '../stores/MainStore'
 
-
-
+import CountryFlag from 'vue-country-flag-next'
 
 import LogoImg from "@/assets/img/logo.png";
+
 export default {
   name: "TopNavbar",
   data: () => ({
     logo: LogoImg,
 
-
   }),
   computed: {
     ...mapState(useMainStore, ['isMobile']),
 
+  },
+  components:{
+    CountryFlag
   },
   methods:{
     selectLang(locale){

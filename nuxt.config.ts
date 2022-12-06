@@ -10,6 +10,7 @@ export default defineNuxtConfig({
         'assets/css/style.css',
         'assets/css/responsive.css',
         '@mdi/font/css/materialdesignicons.min.css',
+        'vue3-country-flag-icon/dist/CountryFlag.css'
     ],
 
 

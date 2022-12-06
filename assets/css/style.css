@@ -227,3 +227,18 @@ header .v-tabs{
 .leftbar .v-chip__content{
 
 }
+.current_language{
+
+}
+.normal-flag{
+    margin:0px !important
+}
+.country_flag{
+    float:left;
+}
+.flags_list .v-list-item-title{
+    line-height: 40px !important;
+}
+.leftbar .v-chip{
+    text-align: center !important;
+}
