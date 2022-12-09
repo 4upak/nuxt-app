@@ -59,6 +59,25 @@ export default {
       localStorage.setItem('lang', locale)
       var url = new URL(location.href)
       var path = url.pathname
+
+      var lang = path.split('/').length >= 3 ? path.split('/')[1] : ''
+
+      if (this.$i18n.availableLocales.includes(lang)) {
+
+        path = path.replace('/' + lang, substring => '/' + locale + '/')
+
+      } else {
+        path = '/' + locale +'/'+ path
+      }
+
+
+      var new_url =  path.replace('///','/').replace('/en','').replace('//','/')
+      console.log(new_url)
+      //nuxt redirect to path
+      this.$router.push(new_url)
+
+
+
     },
   },
   components:{
