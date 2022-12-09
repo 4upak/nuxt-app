@@ -21,6 +21,7 @@ export default defineNuxtConfig({
     vite: {
         define: {
             'process.env.DEBUG': false,
+            'process.env.PORT': 3001,
         },
     },
     runtimeConfig: {
