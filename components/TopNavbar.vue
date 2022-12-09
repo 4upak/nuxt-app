@@ -42,53 +42,8 @@
 
 
         <div class="header_buttons">
+          <LangSelector />
 
-          <v-menu
-              open-on-hover
-              class="lang_selector"
-
-          >
-            <template v-slot:activator="{ props }">
-              <v-btn
-                  color="primary"
-                  v-bind="props"
-              >
-                <country-flag country="gb" size='normal' v-if="$i18n.locale=='en'"/>
-                <country-flag country="ua" size='normal' v-if="$i18n.locale=='uk'"/>
-                <country-flag country="ru" size='normal' v-if="$i18n.locale=='ru'"/>
-                <div class="current_language">{{ $t('lang_name') }}</div>
-              </v-btn>
-            </template>
-
-            <v-list class="flags_list">
-              <v-list-item
-                @click="selectLang('en')"
-              >
-                  <div class="country_flag"><country-flag country="gb" size='normal'/></div>
-                  <v-list-item-title>
-                    English
-                  </v-list-item-title>
-              </v-list-item>
-              <v-list-item
-                  @click="selectLang('ru')"
-              >
-                <div class="country_flag"><country-flag country="ru" size='normal'/></div>
-                  <v-list-item-title>
-                    Русский
-                  </v-list-item-title>
-
-              </v-list-item>
-              <v-list-item
-                  @click="selectLang('uk')"
-              >
-                <div class="country_flag"><country-flag country="ua" size='normal'/></div>
-                  <v-list-item-title>
-                    Украинский
-                  </v-list-item-title>
-
-              </v-list-item>
-            </v-list>
-          </v-menu>
 
 
           <v-btn
@@ -173,8 +128,8 @@
 
 import { mapState} from 'pinia'
 import {useMainStore} from '../stores/MainStore'
+import LangSelector from "@/components/LangSelector";
 
-import CountryFlag from 'vue-country-flag-next'
 
 import LogoImg from "@/assets/img/logo.png";
 
@@ -189,14 +144,9 @@ export default {
 
   },
   components:{
-    CountryFlag
   },
   methods:{
-    selectLang(locale){
-      console.log('selecting lang')
-      this.$i18n.locale = locale
-      localStorage.setItem('lang',locale)
-    },
+
   },
 
 
