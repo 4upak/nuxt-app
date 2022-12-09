@@ -103,7 +103,7 @@ export const useCurrencyStore = defineStore('currencies', {
 
         },
 
-        setSelection(code, name, type){
+        setSelection(code, name, type, locale){
             if(type == 'from') {
                 this.from_code_selected = code.toLowerCase()
                 this.fromCurrencyName = name
@@ -135,9 +135,13 @@ export const useCurrencyStore = defineStore('currencies', {
                 }
             }
 
+
             if (this.from_code_selected != null && this.to_code_selected != null) {
-                console.log('redirecting')
-                navigateTo({ path: '/exchange-from-'+this.from_code_selected+'-to-'+ this.to_code_selected})
+                if(locale!='en')
+                    navigateTo({ path: '/'+locale+'/exchange-from-'+this.from_code_selected+'-to-'+ this.to_code_selected+'/'})
+                else
+                    navigateTo({ path: '/exchange-from-'+this.from_code_selected+'-to-'+ this.to_code_selected+'/'})
+
             }
 
         },
@@ -205,7 +209,7 @@ export const useCurrencyStore = defineStore('currencies', {
 
         },
 
-        changeCurrencies(){
+        changeCurrencies(locale){
 
             var temp = this.from_code_selected
             this.from_code_selected = this.to_code_selected
@@ -234,11 +238,13 @@ export const useCurrencyStore = defineStore('currencies', {
                     }
                 }
             }
-
-            navigateTo({ path: '/exchange-from-'+this.from_code_selected+'-to-'+ this.to_code_selected})
+            if(locale!='en')
+                navigateTo({ path: '/'+locale+'/exchange-from-'+this.from_code_selected+'-to-'+ this.to_code_selected+'/'})
+            else
+                navigateTo({ path: '/exchange-from-'+this.from_code_selected+'-to-'+ this.to_code_selected+'/'})
 
         },
-        clearSelection(){
+        clearSelection(locale){
             this.from_code_selected = null
             this.to_code_selected = null
             //this.fromCurrencyName = null
@@ -254,7 +260,12 @@ export const useCurrencyStore = defineStore('currencies', {
                     this.currencies_to_data[i].tag_currencies[j].selected = false
                 }
             }
-            navigateTo({ path: '/'})
+
+            if(locale!='en')
+                navigateTo({ path: '/'+locale+'/'})
+            else
+                navigateTo({ path: '/'})
+
         }
     }
 

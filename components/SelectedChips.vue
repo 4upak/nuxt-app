@@ -33,7 +33,7 @@
     <v-icon
         class="ma-2"
         color="blue"
-        @click="clearSelection()"
+        @click="clearSelection(this.$i18n.locale)"
         v-if="fromCurrencyName && toCurrencyName"
     >
       mdi-square-edit-outline
@@ -56,7 +56,7 @@ export default {
     ...mapActions(useCurrencyStore, ['changeCurrencies','loadSelection','clearSelection']),
     ...mapActions(useRatesStore, ['getRates']),
     changeSelected() {
-      this.changeCurrencies()
+      this.changeCurrencies(this.$i18n.locale)
       this.loadSelection(this.from_code_selected, this.to_code_selected)
       this.getRates(this.from_code_selected, this.to_code_selected)
     }

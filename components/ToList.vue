@@ -111,7 +111,7 @@ export default {
     },
     selectItem(code,name){
       console.log("to code:"+code)
-      this.setSelection(code,name,"to")
+      this.setSelection(code,name,"to",this.$i18n.locale)
     }
   },
   mounted() {
