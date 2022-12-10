@@ -11,12 +11,14 @@
       <v-col cols="12" md="5">
         <left-bar />
       </v-col>
-      <v-col cols="12" md="7">
-        <v-responsive >
-          <!--<top-exchangers />-->
-          <exchanges-full-list />
-        </v-responsive>
+      <v-col cols="12" md="7" v-if="!isMobile">
+            <exchanges-full-list />
       </v-col>
+      <v-col cols="12" md="7" v-else>
+        <exchanges-full-list-mobile />
+      </v-col>
+
+
 
 
 
@@ -27,19 +29,25 @@
 </template>
 
 <script>
-import { mapActions } from 'pinia'
+import { mapActions, mapState } from 'pinia'
 
 
 import LeftBar  from "@/components/LeftBar";
 import ExchangesFullList from "@/components/ExchangesFullList";
+import ExchangesFullListMobile from "@/components/ExchangesFullListMobile";
+import {useMainStore} from "@/stores/MainStore";
 
 export default {
 
   name: "ExchangesPage",
   components: {
     'left-bar': LeftBar,
-    'exchanges-full-list': ExchangesFullList
-  }
+    'exchanges-full-list': ExchangesFullList,
+    'exchanges-full-list-mobile': ExchangesFullListMobile,
+  },
+  computed: {
+    ...mapState(useMainStore, ['isMobile'])
+  },
 }
 </script>
 

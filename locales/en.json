@@ -31,6 +31,21 @@
   "Get currency": "Get currency",
 
   "to": "to",
-  "Exchange": "Exchange"
+  "Exchange": "Exchange",
+
+  "year": "year",
+  "month": "month",
+  "days": "days",
+
+  "Name": "Name",
+  "Country": "Country",
+  "Age": "Age",
+  "AC": "AC",
+  "PM": "PM",
+  "Status": "Status",
+
+  "Detail": "Details",
+  "PerfectMoney rate": "PerfectMoney rate",
+  "AdvCash rate": "AdvCash rate"
 
 }

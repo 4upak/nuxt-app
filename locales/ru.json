@@ -31,5 +31,20 @@
   "Get currency": "Получаю",
 
   "to": "на",
-  "Exchange": "Обменять"
+  "Exchange": "Обменять",
+
+  "year": "лет",
+  "month": "месяцев",
+  "days": "дней",
+  "Name": "Name",
+
+  "Country": "Страна",
+  "Age": "Возраст",
+  "AC": "AC",
+  "PM": "PM",
+  "Status": "Статус",
+
+  "Detail": "Подробно",
+  "PerfectMoney rate": "PerfectMoney рейт",
+  "AdvCash rate": "AdvCash рейт"
 }
