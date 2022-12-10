@@ -28,5 +28,8 @@
   "Money transfers": "Денежные переводы",
 
   "Give currency": "Отдаю",
-  "Get currency": "Получаю"
+  "Get currency": "Получаю",
+
+  "to": "на",
+  "Exchange": "Обменять"
 }

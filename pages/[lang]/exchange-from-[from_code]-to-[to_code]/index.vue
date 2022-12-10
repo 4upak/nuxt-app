@@ -1,5 +1,5 @@
 <template>
-  <h1 class="text-center rates_page_title" v-if="fromCurrencyName && toCurrencyName">Exchange <span class="blue_span">{{fromCurrencyName}}</span> to  <span class="blue_span">{{toCurrencyName}}</span></h1>
+  <h1 class="text-center rates_page_title" v-if="fromCurrencyName && toCurrencyName">{{ $t('Exchange') }} <span class="blue_span">{{fromCurrencyName}}</span> {{ $t('to') }}  <span class="blue_span">{{toCurrencyName}}</span></h1>
   <v-container class="lighten-5">
 
     <v-row
