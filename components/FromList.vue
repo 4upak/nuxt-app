@@ -1,6 +1,6 @@
 <template>
   <v-text-field
-      label="Give currency"
+      :label="$t('Give currency')"
       v-model="FromSearchItem"
       @input="searchFrom"
       id="from-list"

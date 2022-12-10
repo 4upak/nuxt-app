@@ -25,5 +25,8 @@
   "Exchanges Codes": "Коды бирж",
   "Internet banking": "Интернет банкинг",
   "Cash": "Наличные",
-  "Money transfers": "Денежные переводы"
+  "Money transfers": "Денежные переводы",
+
+  "Give currency": "Отдаю",
+  "Get currency": "Получаю"
 }
