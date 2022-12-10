@@ -7,7 +7,7 @@
   >
     <div>
       <v-col
-          class="d-flex align-center rate_result_cols"
+            class="d-flex align-center rate_result_cols"
       >
 
         <v-row class="rate_result_cols_header" >

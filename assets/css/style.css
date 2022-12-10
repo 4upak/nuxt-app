@@ -254,3 +254,7 @@ span.from_currency{
     font-size: 12px;
     color: grey;
 }
+.rate_result_cols_header{
+    text-transform: uppercase;
+    font-weight: bold;
+}
