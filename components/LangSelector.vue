@@ -83,5 +83,16 @@ export default {
   components:{
     CountryFlag
   },
+  mounted() {
+    var lang = localStorage.getItem('lang')
+    console.log('[mounted] LangSelector: ' + this.$i18n.locale + ' ' + lang)
+
+    //if lang exists
+
+    if(lang && this.$i18n.locale!=lang){
+      this.selectLang(lang)
+    }
+
+  }
 }
 </script>

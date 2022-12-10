@@ -27,7 +27,7 @@
 
         <v-expansion-panel-title
             color="blue"
-        >{{item.name}}</v-expansion-panel-title>
+        >{{$t(item.name) }}</v-expansion-panel-title>
         <v-expansion-panel-text>
           <div
               :key="i"

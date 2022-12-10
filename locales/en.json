@@ -17,5 +17,13 @@
 
   "tab_title_list": "List",
   "tab_title_search": "Search",
-  "tab_title_popular": "Popular"
+  "tab_title_popular": "Popular",
+
+  "Popular": "Popular",
+  "Crypto Currency": "Crypto Currency",
+  "Payment System": "Payment System",
+  "Exchanges Codes": "Exchanges Codes",
+  "Internet banking": "Internet banking",
+  "Cash": "Cash",
+  "Money transfers": "Money transfers"
 }

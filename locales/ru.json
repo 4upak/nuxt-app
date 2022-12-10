@@ -17,5 +17,13 @@
 
   "tab_title_list": "Список",
   "tab_title_search": "Поиск",
-  "tab_title_popular": "Популярные"
+  "tab_title_popular": "Популярные",
+
+  "Popular": "Популярныее",
+  "Crypto Currency": "Криптовалюта",
+  "Payment System": "Платежные системы",
+  "Exchanges Codes": "Коды бирж",
+  "Internet banking": "Интернет банкинг",
+  "Cash": "Наличные",
+  "Money transfers": "Денежные переводы"
 }

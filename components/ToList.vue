@@ -29,7 +29,7 @@
         <v-expansion-panel-title
             color="blue"
         >
-          {{item.name}}
+          {{$t(item.name)}}
         </v-expansion-panel-title>
 
         <v-expansion-panel-text>

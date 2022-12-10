@@ -52,13 +52,6 @@ export default {
 
   },
   mounted() {
-    var lang = localStorage.getItem(lang)
-
-    if(lang){
-      console.log("Lang:"+lang)
-      $locale.value = lang
-    }
-
 
   },
 
