@@ -37,12 +37,12 @@
           >
             <v-row class="exch_cols rate_result_cols_header_seccond" v-if="exch.url">
               <v-col cols="20" md="3" ><a :href="'https://'+exch.url">{{exch.name}}</a></v-col>
-              <v-col cols="20" md="2">{{exch.country}}</v-col>
-              <v-col cols="20" md="5">
+              <v-col cols="20" md="2" class="exch_data">{{exch.country}}</v-col>
+              <v-col cols="20" md="5"  class="exch_data">
                 {{exch.date_year}} {{$t('year')}}, {{exch.date_month}} {{$t('month')}}, {{exch.date_days}} {{$t('days')}}
               </v-col>
-              <v-col cols="20" md="1">{{exch.advcash_rate}}</v-col>
-              <v-col cols="20" md="1">{{exch.pm_rate}}</v-col>
+              <v-col cols="20" md="1"  class="exch_data">{{exch.advcash_rate}}</v-col>
+              <v-col cols="20" md="1"  class="exch_data">{{exch.pm_rate}}</v-col>
             </v-row>
           </v-col>
       </template>

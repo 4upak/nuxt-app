@@ -258,3 +258,7 @@ span.from_currency{
     text-transform: uppercase;
     font-weight: bold;
 }
+.exch_data{
+    font-size: 13px;
+    color: #888888;
+}
