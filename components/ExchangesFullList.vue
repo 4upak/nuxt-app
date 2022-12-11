@@ -1,11 +1,7 @@
 <template>
-  <v-card
-      class="mx-auto"
 
-      outlined
-      elevation="0"
-  >
-    <div>
+    <div v-if="exchangers_full_list.length >0">
+      <template v-if="!isMobile">
       <v-col
             class="d-flex align-center rate_result_cols"
       >
@@ -31,23 +27,26 @@
         </v-row>
 
       </v-col>
-    </div>
-    <div>
-      <v-col
-
+      </template>
+      <template
+      v-for="exch in exchangers_full_list"
+      :key="exch.id"
       >
-        <v-row v-for="exch in exchangers_full_list" class="exch_cols">
-          <v-col cols="20" md="3"><a :href="'https://'+exch.url">{{exch.name}}</a></v-col>
-          <v-col cols="20" md="2">{{exch.country}}</v-col>
-          <v-col cols="20" md="5">
-            {{exch.date_year}} {{$t('year')}}, {{exch.date_month}} {{$t('month')}}, {{exch.date_days}} {{$t('days')}}
+          <v-col
+              v-if="!isMobile"
+          >
+            <v-row class="exch_cols rate_result_cols_header_seccond" v-if="exch.url">
+              <v-col cols="20" md="3" ><a :href="'https://'+exch.url">{{exch.name}}</a></v-col>
+              <v-col cols="20" md="2">{{exch.country}}</v-col>
+              <v-col cols="20" md="5">
+                {{exch.date_year}} {{$t('year')}}, {{exch.date_month}} {{$t('month')}}, {{exch.date_days}} {{$t('days')}}
+              </v-col>
+              <v-col cols="20" md="1">{{exch.advcash_rate}}</v-col>
+              <v-col cols="20" md="1">{{exch.pm_rate}}</v-col>
+            </v-row>
           </v-col>
-          <v-col cols="20" md="1">{{exch.advcash_rate}}</v-col>
-          <v-col cols="20" md="1">{{exch.pm_rate}}</v-col>
-        </v-row>
-      </v-col>
+      </template>
     </div>
-  </v-card>
 </template>
 
 <script>

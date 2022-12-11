@@ -11,11 +11,12 @@
       <v-col cols="12" md="5">
         <left-bar />
       </v-col>
+
       <v-col cols="12" md="7" v-if="!isMobile">
-            <exchanges-full-list />
+        <v-card><v-responsive ><exchanges-full-list /></v-responsive></v-card>
       </v-col>
       <v-col cols="12" md="7" v-else>
-        <exchanges-full-list-mobile />
+        <v-card><v-responsive ><exchanges-full-list-mobile /></v-responsive></v-card>
       </v-col>
 
 
