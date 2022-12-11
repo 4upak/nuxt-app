@@ -30,6 +30,9 @@
             <div >
               <b>{{ $t('PerfectMoney rate')}}:</b> <span class="from_currency">{{exch.pm_rate}}</span>
             </div>
+          <div >
+            <b>{{ $t('Rates')}}:</b> <span class="from_currency">{{exch.rate_count}}</span>
+          </div>
         </div>
         <v-btn
             class="mt-2 rate_mobile_button"

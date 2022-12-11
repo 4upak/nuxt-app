@@ -28,6 +28,7 @@ export default defineNuxtConfig({
 
         public:{
             API_BASE_URL: 'https://services.digichanger.pro/',
+            //API_BASE_URL: 'http://0.0.0.0:8000/'
         }
     },
 

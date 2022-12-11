@@ -16,7 +16,7 @@ export const useExchangersStore = defineStore('exchangers', {
 
         async getExchangersFullList() {
             const runtimeConfig = useRuntimeConfig()
-            const res = await useFetch(runtimeConfig.public.API_BASE_URL + 'digimon/api/exchanges/')
+            const res = await useFetch(runtimeConfig.public.API_BASE_URL + 'digimon/api/exchangers/toplist/')
             this.exchangers_full_list = res.data._rawValue
             // count difference betweeb datestamps
             this.exchangers_full_list.forEach((item) => {

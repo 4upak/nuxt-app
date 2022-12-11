@@ -13,8 +13,11 @@
           <v-col cols="20" md="2">
             {{$t('Country')}}
           </v-col>
-          <v-col cols="20" md="5">
+          <v-col cols="20" md="4">
             {{$t('Age')}}
+          </v-col>
+          <v-col cols="20" md="1">
+            {{$t('Rates')}}
           </v-col>
           <v-col cols="20" md="1">
             {{$t('AC')}}
@@ -38,9 +41,10 @@
             <v-row class="exch_cols rate_result_cols_header_seccond" v-if="exch.url">
               <v-col cols="20" md="3" ><a :href="'https://'+exch.url">{{exch.name}}</a></v-col>
               <v-col cols="20" md="2" class="exch_data">{{exch.country}}</v-col>
-              <v-col cols="20" md="5"  class="exch_data">
+              <v-col cols="20" md="4"  class="exch_data">
                 {{exch.date_year}} {{$t('year')}}, {{exch.date_month}} {{$t('month')}}, {{exch.date_days}} {{$t('days')}}
               </v-col>
+              <v-col cols="20" md="1"  class="exch_data">{{exch.rate_count}}</v-col>
               <v-col cols="20" md="1"  class="exch_data">{{exch.advcash_rate}}</v-col>
               <v-col cols="20" md="1"  class="exch_data">{{exch.pm_rate}}</v-col>
             </v-row>
@@ -53,6 +57,7 @@
 import { mapState } from 'pinia'
 
 import {useExchangersStore} from "@/stores/ExchangersStore";
+import {useMainStore} from '../stores/MainStore'
 
 export default {
   setup() {
@@ -62,6 +67,7 @@ export default {
   },
   computed: {
     ...mapState(useExchangersStore, ['exchangers_full_list']),
+    ...mapState(useMainStore,["isMobile"]),
   },
 
   name: "ExchangesFullList"
