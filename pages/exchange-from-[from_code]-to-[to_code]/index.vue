@@ -30,7 +30,8 @@
             {{seo_data.title_h2}}
           </v-card-title>
           <v-card-text>
-            {{seo_data.seo_teaser}}
+            <div v-html="seo_data.seo_teaser"></div>
+
           </v-card-text>
         </v-card>
         <v-card>
@@ -41,7 +42,7 @@
         <v-card v-if="seo_data.seo_text" class="seo_full_text">
 
           <v-card-text>
-            {{seo_data.seo_text}}
+            <div v-html="seo_data.seo_text"></div>
           </v-card-text>
         </v-card>
       </v-col>
