@@ -13,7 +13,8 @@ export const useMainStore = defineStore('main', {
         from_list_panel: [0,1,2,3,4,5,6],
         to_list_panel: [0,1,2,3,4,5,6],
         list_cols_num: 12,
-        list_md: 6
+        list_md: 6,
+        locale: 'en',
     }),
 
     actions: {

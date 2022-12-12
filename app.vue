@@ -34,7 +34,10 @@ export default {
 
     if (route.params.lang)
       locale.value = route.params.lang
-    console.log(t)
+
+    const main_store = useMainStore()
+    main_store.locale = locale.value
+
   },
   name: 'App',
   components: {

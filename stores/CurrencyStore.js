@@ -199,7 +199,7 @@ export const useCurrencyStore = defineStore('currencies', {
         async currencyInfo(code, type) {
             if(code && type) {
                 const runtimeConfig = useRuntimeConfig()
-                const res = await useFetch(runtimeConfig.public.API_BASE_URL + 'digimon/api/' + code + '/')
+                const res = await useFetch(runtimeConfig.public.API_BASE_URL + 'digimon/api/currency_by_code/' + code + '/')
                 //console.log(res)
                 if (type == 'from')
                     this.fromCurrencyName = res.data._rawValue.name
@@ -266,7 +266,8 @@ export const useCurrencyStore = defineStore('currencies', {
             else
                 navigateTo({ path: '/'})
 
-        }
+        },
+
     }
 
 })

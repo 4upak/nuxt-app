@@ -12,6 +12,8 @@
       <v-col cols="12" md="7">
         <v-card>
           <v-responsive >
+            Seo_data title
+            <h1 v-if="seo_data.title">{{seo_data.title}}</h1>
               <rates-table />
           </v-responsive>
         </v-card>
@@ -32,6 +34,7 @@ import RatesTable from "@/components/RatesTable";
 import { mapState, mapActions } from 'pinia'
 import {useCurrencyStore} from '@/stores/CurrencyStore'
 import {useRatesStore} from "@/stores/RatesStore";
+import { useI18n } from 'vue-i18n'
 
 const currency_store = useCurrencyStore()
 const rates_store = useRatesStore()
@@ -76,10 +79,17 @@ export default {
   setup() {
 
     const currencyStore = useCurrencyStore()
+    const RatesStore = useRatesStore()
     const route = useRoute()
 
     currencyStore.currencyInfo(route.params.from_code,"from")
     currencyStore.currencyInfo(route.params.to_code,"to")
+
+    const {t, locale} = useI18n({useScope: 'global'})
+
+    const seo_data = RatesStore.getSeoData(route.params.from_code,route.params.to_code,locale.value)
+    console.log(seo_data)
+
 
 
   },
@@ -97,10 +107,12 @@ export default {
   },
   computed: {
     ...mapState(useCurrencyStore,["fromCurrencyName", "toCurrencyName"]),
+    ...mapState(useRatesStore,["seo_data"]),
 
   },
   methods: {
     ...mapActions(useCurrencyStore,["loadSelection"]),
+    ...mapActions(useRatesStore,["getSeoData"]),
   },
   created() {
 
@@ -108,6 +120,9 @@ export default {
   },
   mounted() {
     this.loadSelection(this.$route.params.from_code, this.$route.params.to_code)
+    this.getSeoData(this.$route.params.from_code, this.$route.params.to_code, this.$i18n.locale)
+    console.log("SEO DATA:")
+    console.log(this.seo_data)
   },
 
 }
