@@ -1,5 +1,20 @@
 <template>
-  <h1 class="text-center rates_page_title" v-if="fromCurrencyName && toCurrencyName">{{ $t('Exchange') }} <span class="blue_span">{{fromCurrencyName}}</span> {{ $t('to') }}  <span class="blue_span">{{toCurrencyName}}</span></h1>
+  <div>
+    <Head>
+      <Title v-if="seo_data.title">{{seo_data.title}}</Title>
+      <Title v-else>{{ $t('Exchange') }} {{fromCurrencyName}} {{ $t('to') }} {{toCurrencyName}}</Title>
+
+      <Meta v-if="seo_data.meta_description" name="description" :content="seo_data.meta_description"/>
+      <Meta v-else name="description" :content="$t('Exchange') + ' ' + fromCurrencyName + ' ' + $t('to') + ' ' + toCurrencyName"/>
+
+      <Meta v-if="seo_data.meta_keywords" name="keywords" :content="seo_data.meta_keywords"/>
+      <Meta v-else name="keywords" :content="$t('Exchange') + ', ' + fromCurrencyName + ', ' + $t('to') + ', ' + toCurrencyName"/>
+
+    </Head>
+    <!-- -->
+  </div>
+  <h1 v-if="seo_data.title_h1" class="text-center rates_page_title">{{seo_data.title_h1}}</h1>
+  <h1 v-else  v-if="fromCurrencyName && toCurrencyName">{{ $t('Exchange') }} <span class="blue_span">{{fromCurrencyName}}</span> {{ $t('to') }}  <span class="blue_span">{{toCurrencyName}}</span></h1>
   <v-container class="lighten-5">
 
     <v-row
@@ -10,12 +25,25 @@
         <left-bar />
       </v-col>
       <v-col cols="12" md="7">
+        <v-card v-if="seo_data.seo_teaser" class="seo_teaser">
+          <v-card-title v-if="seo_data.title_h2">
+            {{seo_data.title_h2}}
+          </v-card-title>
+          <v-card-text>
+            <div v-html="seo_data.seo_teaser"></div>
+
+          </v-card-text>
+        </v-card>
         <v-card>
           <v-responsive >
-            Seo_data title
-            <h1 v-if="seo_data.title">{{seo_data.title}}</h1>
               <rates-table />
           </v-responsive>
+        </v-card>
+        <v-card v-if="seo_data.seo_text" class="seo_full_text">
+
+          <v-card-text>
+            <div v-html="seo_data.seo_text"></div>
+          </v-card-text>
         </v-card>
       </v-col>
     </v-row>
@@ -34,10 +62,12 @@ import RatesTable from "@/components/RatesTable";
 import { mapState, mapActions } from 'pinia'
 import {useCurrencyStore} from '@/stores/CurrencyStore'
 import {useRatesStore} from "@/stores/RatesStore";
+import {useMainStore} from "@/stores/MainStore";
 import { useI18n } from 'vue-i18n'
 
 const currency_store = useCurrencyStore()
 const rates_store = useRatesStore()
+const main_store = useMainStore()
 
 const unsubscribe = currency_store.$onAction(
     ({
@@ -62,7 +92,13 @@ const unsubscribe = currency_store.$onAction(
           console.log('setSelection action')
           rates_store.rates = []
           rates_store.getRates(currency_store.from_code_selected, currency_store.to_code_selected)
+          //console.log('Getting locale from store')
+
+          console.log('Get seo data '+ main_store.locale)
+          rates_store.getSeoData(currency_store.from_code_selected, currency_store.to_code_selected, main_store.locale)
+          console.log('Get seo data '+ main_store.locale)
         }
+
 
 
       })
@@ -77,7 +113,7 @@ const unsubscribe = currency_store.$onAction(
 export default {
 
   setup() {
-
+    const {t, locale} = useI18n({useScope: 'global'})
     const currencyStore = useCurrencyStore()
     const RatesStore = useRatesStore()
     const route = useRoute()
@@ -85,10 +121,7 @@ export default {
     currencyStore.currencyInfo(route.params.from_code,"from")
     currencyStore.currencyInfo(route.params.to_code,"to")
 
-    const {t, locale} = useI18n({useScope: 'global'})
-
-    const seo_data = RatesStore.getSeoData(route.params.from_code,route.params.to_code,locale.value)
-    console.log(seo_data)
+    RatesStore.getSeoData(route.params.from_code,route.params.to_code,locale.value)
 
 
 
@@ -102,9 +135,11 @@ export default {
   },
   data () {
     return {
-      name: 'Currency Converter',
+
+
     }
   },
+
   computed: {
     ...mapState(useCurrencyStore,["fromCurrencyName", "toCurrencyName"]),
     ...mapState(useRatesStore,["seo_data"]),
@@ -120,10 +155,9 @@ export default {
   },
   mounted() {
     this.loadSelection(this.$route.params.from_code, this.$route.params.to_code)
-    this.getSeoData(this.$route.params.from_code, this.$route.params.to_code, this.$i18n.locale)
-    console.log("SEO DATA:")
-    console.log(this.seo_data)
+
   },
+
 
 }
 </script>
