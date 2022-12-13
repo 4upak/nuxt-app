@@ -135,7 +135,9 @@ export default {
     const MainStore = useMainStore()
     const route = useRoute()
     
-    MainStore.leftbar_tab = 'two'
+    if(MainStore.isMobile){
+      MainStore.leftbar_tab = 'two'
+    }
     currencyStore.currencyInfo(route.params.from_code,"from")
     currencyStore.currencyInfo(route.params.to_code,"to")
 
@@ -175,7 +177,8 @@ export default {
 
   },
   mounted() {
-    this.leftbar_tab = 'two'
+    if(this.isMobile)
+      this.leftbar_tab = 'two'
     this.loadSelection(this.$route.params.from_code, this.$route.params.to_code)
 
     this.getSeoData(this.$route.params.from_code, this.$route.params.to_code, this.$i18n.locale)

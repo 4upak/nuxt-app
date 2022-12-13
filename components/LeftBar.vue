@@ -127,8 +127,6 @@ export default {
   },
   methods:{
 
-
-
     changeTab() {
       if(this.isMobile && this.from_code_selected != null && this.to_code_selected != null){
         this.leftbar_tab = 'two'

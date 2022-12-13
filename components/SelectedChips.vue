@@ -33,7 +33,7 @@
     <v-icon
         class="ma-2"
         color="blue"
-        @click="clearSelection(this.$i18n.locale)"
+        @click="this.leftbar_tab = 'one', clearSelection(this.$i18n.locale); "
         v-if="fromCurrencyName && toCurrencyName"
     >
       mdi-square-edit-outline
@@ -45,12 +45,14 @@
 import {mapState, mapActions, mapWritableState} from 'pinia'
 import {useCurrencyStore} from '@/stores/CurrencyStore'
 import {useRatesStore} from "@/stores/RatesStore"
+import {useMainStore} from "@/stores/MainStore";
 
 export default {
   name: "SelectedChips",
 
   computed: {
     ...mapState(useCurrencyStore, ['fromCurrencyName', 'toCurrencyName', 'from_code_selected', 'to_code_selected']),
+    ...mapWritableState(useMainStore, ['leftbar_tab']),
   },
   methods: {
     ...mapActions(useCurrencyStore, ['changeCurrencies','loadSelection','clearSelection']),
