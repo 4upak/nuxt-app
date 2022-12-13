@@ -7,7 +7,7 @@
       elevation="0"
   >
     <v-tabs
-        v-model="tab"
+        v-model="leftbar_tab"
         bg-color="#f7fafc"
         height="60px"
         class="leftbar"
@@ -45,7 +45,7 @@
       </v-tab>
     </v-tabs>
     <v-card-text>
-      <v-window v-model="tab">
+      <v-window v-model="leftbar_tab">
         <v-window-item value="one">
           <selected-chips />
           <v-row
@@ -91,7 +91,7 @@
 </template>
 
 <script>
-import {mapState, mapActions, mapWritableState} from 'pinia'
+import {mapState, mapWritableState} from 'pinia'
 import {useCurrencyStore} from '@/stores/CurrencyStore'
 import {useMainStore} from '@/stores/MainStore'
 
@@ -112,7 +112,6 @@ export default {
   },
   name: "LeftBar",
   data: () => ({
-    tab: 'one',
 
   }),
   components: {
@@ -122,6 +121,7 @@ export default {
   },
   computed: {
     ...mapState(useMainStore, ['isMobile','list_cols_num','list_md']),
+    ...mapWritableState(useMainStore, ['leftbar_tab']),
     ...mapState(useCurrencyStore, ['currencies_from_data', 'currencies_to_data', 'from_code_selected', 'to_code_selected','fromCurrencyName', 'toCurrencyName']),
     ...mapWritableState(useCurrencyStore, ['from_code_selected', 'to_code_selected']),
   },
@@ -131,8 +131,7 @@ export default {
 
     changeTab() {
       if(this.isMobile && this.from_code_selected != null && this.to_code_selected != null){
-        console.log("[leftbar] tab changed")
-        this.tab = 'two'
+        this.leftbar_tab = 'two'
       }
     }
   },

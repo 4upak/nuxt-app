@@ -15,6 +15,7 @@ export const useMainStore = defineStore('main', {
         list_cols_num: 12,
         list_md: 6,
         locale: 'en',
+        leftbar_tab: 'one',
     }),
 
     actions: {

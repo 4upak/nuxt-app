@@ -39,7 +39,7 @@
 
           <h2>{{seo_data.title_h2}}</h2>
 
-          <div v-html="seo_data.seo_teaser"></div>
+          <div v-html="seo_data.seo_teaser" class="teaser_mobile_content"></div>
 
 
         </v-card>
@@ -75,7 +75,7 @@ import LeftBar  from "@/components/LeftBar";
 import RatesTable from "@/components/RatesTable";
 import RatesTableMobile from "@/components/RatesTableMobile";
 
-import { mapState, mapActions } from 'pinia'
+import {mapState, mapActions, mapWritableState} from 'pinia'
 import {useCurrencyStore} from '@/stores/CurrencyStore'
 import {useRatesStore} from "@/stores/RatesStore";
 import {useMainStore} from "@/stores/MainStore";
@@ -132,8 +132,10 @@ export default {
     const {t, locale} = useI18n({useScope: 'global'})
     const currencyStore = useCurrencyStore()
     const RatesStore = useRatesStore()
+    const MainStore = useMainStore()
     const route = useRoute()
 
+    MainStore.leftbar_tab = 'two'
     currencyStore.currencyInfo(route.params.from_code,"from")
     currencyStore.currencyInfo(route.params.to_code,"to")
 
@@ -161,6 +163,7 @@ export default {
     ...mapState(useCurrencyStore,["fromCurrencyName", "toCurrencyName"]),
     ...mapState(useRatesStore,["seo_data"]),
     ...mapState(useMainStore,["isMobile"]),
+    ...mapWritableState(useMainStore,["leftbar_tab"]),
 
   },
   methods: {
@@ -172,6 +175,7 @@ export default {
 
   },
   mounted() {
+    this.leftbar_tab = 'two'
     this.loadSelection(this.$route.params.from_code, this.$route.params.to_code)
 
     this.getSeoData(this.$route.params.from_code, this.$route.params.to_code, this.$i18n.locale)
