@@ -246,9 +246,10 @@ export const useCurrencyStore = defineStore('currencies', {
         },
         clearSelection(locale){
             this.from_code_selected = null
+            this.fromCurrencyName  = null
             this.to_code_selected = null
-            //this.fromCurrencyName = null
-            //this.toCurrencyName = null
+            this.toCurrencyName = null
+
             for (var i = 0; i < this.currencies_from_data.length; i++) {
                 for (var j = 0; j < this.currencies_from_data[i].tag_currencies.length; j++) {
                     this.currencies_from_data[i].tag_currencies[j].selected = false
