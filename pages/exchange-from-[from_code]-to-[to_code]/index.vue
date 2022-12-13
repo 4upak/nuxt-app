@@ -25,7 +25,7 @@
         <left-bar />
       </v-col>
       <v-col cols="12" md="7">
-        <v-card v-if="seo_data.seo_teaser" class="seo_teaser">
+        <v-card v-if="seo_data.seo_teaser && !isMobile" class="seo_teaser">
           <v-card-title v-if="seo_data.title_h2">
             {{seo_data.title_h2}}
           </v-card-title>
@@ -34,9 +34,24 @@
 
           </v-card-text>
         </v-card>
-        <v-card>
+
+        <v-card v-if="seo_data.seo_teaser && isMobile" class="seo_teaser_mobile">
+
+          <h2>{{seo_data.title_h2}}</h2>
+
+          <div v-html="seo_data.seo_teaser"></div>
+
+
+        </v-card>
+
+        <v-card v-if="!isMobile">
           <v-responsive >
               <rates-table />
+          </v-responsive>
+        </v-card>
+        <v-card v-else>
+          <v-responsive >
+            <rates-table-mobile />
           </v-responsive>
         </v-card>
         <v-card v-if="seo_data.seo_text" class="seo_full_text">
@@ -58,6 +73,7 @@
 
 import LeftBar  from "@/components/LeftBar";
 import RatesTable from "@/components/RatesTable";
+import RatesTableMobile from "@/components/RatesTableMobile";
 
 import { mapState, mapActions } from 'pinia'
 import {useCurrencyStore} from '@/stores/CurrencyStore'
@@ -132,6 +148,7 @@ export default {
   components: {
     'left-bar': LeftBar,
     'rates-table': RatesTable,
+    'rates-table-mobile': RatesTableMobile,
   },
   data () {
     return {
@@ -143,6 +160,7 @@ export default {
   computed: {
     ...mapState(useCurrencyStore,["fromCurrencyName", "toCurrencyName"]),
     ...mapState(useRatesStore,["seo_data"]),
+    ...mapState(useMainStore,["isMobile"]),
 
   },
   methods: {

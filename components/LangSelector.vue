@@ -48,12 +48,16 @@
 </template>
 <script>
 import CountryFlag from 'vue-country-flag-next'
-import { mapState} from 'pinia'
+import {mapState, mapWritableState} from 'pinia'
 import {useMainStore} from '../stores/MainStore'
 
 export default {
   methods: {
+
     selectLang(locale) {
+      console.log(this.locale)
+      this.locale = locale
+      console.log(this.locale)
       //console.log('selecting lang')
       this.$i18n.locale = locale
       localStorage.setItem('lang', locale)
@@ -75,10 +79,11 @@ export default {
       //console.log(new_url)
       //nuxt redirect to path
       this.$router.push(new_url)
-
-
-
     },
+
+  },
+  computed: {
+    ...mapWritableState(useMainStore, ['locale']),
   },
   components:{
     CountryFlag
@@ -91,6 +96,8 @@ export default {
 
     if(lang && this.$i18n.locale!=lang){
       this.selectLang(lang)
+
+
     }
 
   }
