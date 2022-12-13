@@ -116,8 +116,8 @@ export default {
     const from_code = route.params.from_code
     const to_code = route.params.to_code
 
-    console.log("rates table console")
-    console.log(from_code, to_code)
+    //console.log("rates table console")
+    //console.log(from_code, to_code)
     rates_store.getRates(from_code, to_code)
 
 

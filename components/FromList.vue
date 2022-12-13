@@ -110,7 +110,7 @@ export default {
     },
   },
   mounted() {
-    console.log("FromList mounted")
+    //console.log("FromList mounted")
     this.from_list_panel = [0,1,2,3,4,5,6]
   }
 

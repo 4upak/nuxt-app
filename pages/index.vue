@@ -52,7 +52,7 @@ export default {
   },
   mounted() {
     this.clearSelections()
-    console.log('[index page] selection cleared')
+    //console.log('[index page] selection cleared')
 
   },
   loading: {

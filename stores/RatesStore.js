@@ -13,7 +13,7 @@ export const useRatesStore = defineStore('rates', {
             //from_code to uper case
             if(from_code && to_code){
                 this.rates = []
-                console.log("[get rates store] get rates:"+from_code+"->"+to_code)
+                //console.log("[get rates store] get rates:"+from_code+"->"+to_code)
                 from_code = from_code.toUpperCase()
                 to_code = to_code.toUpperCase()
                 //get VUE_APP_API_DOMAIN from .env
@@ -23,7 +23,7 @@ export const useRatesStore = defineStore('rates', {
             }
         },
         async getSeoData(from_code, to_code, locale, city=false) {
-            console.log("Get SeoData")
+            //console.log("Get SeoData")
             if(from_code && to_code){
                 from_code = from_code.toUpperCase()
                 to_code = to_code.toUpperCase()

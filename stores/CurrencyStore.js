@@ -22,7 +22,7 @@ export const useCurrencyStore = defineStore('currencies', {
             //get VUE_APP_API_DOMAIN from .env
 
 
-            console.log('[currecny store] get currencies ')
+            //console.log('[currecny store] get currencies ')
             if(this.from_code_selected == null && this.to_code_selected == null) {
 
 
@@ -41,7 +41,7 @@ export const useCurrencyStore = defineStore('currencies', {
                 return true
             }
             else{
-                console.log('[currecny store] get curreecies did not run')
+                //console.log('[currecny store] get curreecies did not run')
                 return false
             }
         },
@@ -151,10 +151,10 @@ export const useCurrencyStore = defineStore('currencies', {
 
 
 
-                console.log("[currency store] loadSelection started")
+                //console.log("[currency store] loadSelection started")
                 from_code = from_code.toUpperCase()
                 to_code = to_code.toUpperCase()
-                console.log(from_code + "->" + to_code + " length:" + this.currencies_from_data.length)
+                //console.log(from_code + "->" + to_code + " length:" + this.currencies_from_data.length)
 
 
 
@@ -165,7 +165,7 @@ export const useCurrencyStore = defineStore('currencies', {
                             this.currencies_from_data[i].tag_currencies[j].selected = true
                             this.from_code_selected = from_code
                             this.fromCurrencyName = this.currencies_from_data[i].tag_currencies[j].name
-                            console.log("[currency store] FromCurrency selected:" + this.fromCurrencyName + " " + this.from_code_selected)
+                            //console.log("[currency store] FromCurrency selected:" + this.fromCurrencyName + " " + this.from_code_selected)
                         } else {
                             this.currencies_from_data[i].tag_currencies[j].selected = false
                         }
@@ -178,13 +178,13 @@ export const useCurrencyStore = defineStore('currencies', {
                             this.currencies_to_data[i].tag_currencies[j].selected = true
                             this.to_code_selected = to_code
                             this.toCurrencyName = this.currencies_from_data[i].tag_currencies[j].name
-                            console.log("[currency store] ToCurrency selected:" + this.toCurrencyName + " " + this.to_code_selected)
+                            //console.log("[currency store] ToCurrency selected:" + this.toCurrencyName + " " + this.to_code_selected)
                         } else {
                             this.currencies_to_data[i].tag_currencies[j].selected = false
                         }
                     }
                 }
-                console.log("Load selections finished:"+this.from_code_selected.toLowerCase() + "->" + this.to_code_selected.toLowerCase())
+                //console.log("Load selections finished:"+this.from_code_selected.toLowerCase() + "->" + this.to_code_selected.toLowerCase())
             }
         },
 

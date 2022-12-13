@@ -79,24 +79,24 @@ const unsubscribe = currency_store.$onAction(
      }) => {
 
       const startTime = Date.now()
-      console.log('before action', name, args)
+      //console.log('before action', name, args)
 
 
       after((result) => {
-        console.log('after action', name, args, result)
+        //console.log('after action', name, args, result)
         if(name === 'getCurrencies'){
           const route = useRoute()
           currency_store.loadSelection(route.params.from_code, route.params.to_code)
         }
         if(name === 'setSelection'){
-          console.log('setSelection action')
+          //console.log('setSelection action')
           rates_store.rates = []
           rates_store.getRates(currency_store.from_code_selected, currency_store.to_code_selected)
           //console.log('Getting locale from store')
 
-          console.log('Get seo data '+ main_store.locale)
+          //console.log('Get seo data '+ main_store.locale)
           rates_store.getSeoData(currency_store.from_code_selected, currency_store.to_code_selected, main_store.locale)
-          console.log('Get seo data '+ main_store.locale)
+          //console.log('Get seo data '+ main_store.locale)
         }
 
 
@@ -104,7 +104,7 @@ const unsubscribe = currency_store.$onAction(
       })
 
       onError((error) => {
-        console.error(error)
+        //console.error(error)
       })
     }
 )
@@ -155,6 +155,8 @@ export default {
   },
   mounted() {
     this.loadSelection(this.$route.params.from_code, this.$route.params.to_code)
+
+    this.getSeoData(this.$route.params.from_code, this.$route.params.to_code, this.$i18n.locale)
 
   },
 

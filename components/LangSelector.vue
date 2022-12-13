@@ -54,7 +54,7 @@ import {useMainStore} from '../stores/MainStore'
 export default {
   methods: {
     selectLang(locale) {
-      console.log('selecting lang')
+      //console.log('selecting lang')
       this.$i18n.locale = locale
       localStorage.setItem('lang', locale)
       var url = new URL(location.href)
@@ -72,7 +72,7 @@ export default {
 
 
       var new_url =  path.replace('///','/').replace('/en','').replace('//','/')
-      console.log(new_url)
+      //console.log(new_url)
       //nuxt redirect to path
       this.$router.push(new_url)
 
@@ -85,7 +85,7 @@ export default {
   },
   mounted() {
     var lang = localStorage.getItem('lang')
-    console.log('[mounted] LangSelector: ' + this.$i18n.locale + ' ' + lang)
+    //console.log('[mounted] LangSelector: ' + this.$i18n.locale + ' ' + lang)
 
     //if lang exists
 

@@ -30,7 +30,7 @@ export default {
   setup(){
     const route = useRoute()
     const {t, locale} = useI18n({useScope: 'global'})
-    console.log("Locale:"+route.params.lang)
+    //console.log("Locale:"+route.params.lang)
 
     if (route.params.lang)
       locale.value = route.params.lang
