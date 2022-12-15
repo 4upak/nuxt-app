@@ -14,7 +14,7 @@
     <!-- -->
   </div>
   <h1 v-if="seo_data.title_h1" class="text-center rates_page_title">{{seo_data.title_h1}}</h1>
-  <h1 v-else  v-if="fromCurrencyName && toCurrencyName">{{ $t('Exchange') }} <span class="blue_span">{{fromCurrencyName}}</span> {{ $t('to') }}  <span class="blue_span">{{toCurrencyName}}</span></h1>
+  <h1 v-else  v-if="fromCurrencyName && toCurrencyName" class="text-center rates_page_title">{{ $t('Exchange') }} <span class="blue_span">{{fromCurrencyName}}</span> {{ $t('to') }}  <span class="blue_span">{{toCurrencyName}}</span></h1>
   <v-container class="lighten-5">
 
     <v-row
