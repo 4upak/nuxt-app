@@ -1,15 +1,14 @@
 <template>
-
   <v-text-field
     label="From currency"
-    v-model="FromSearchItem"
+    v-model="this.FromSearchItem"
     @input="searchFrom"
     v-if="!to_code_selected || !from_code_selected"
 
   >
   </v-text-field>
   <template
-      v-if="FromSearchItem.length > 0"
+      v-if="this.FromSearchItem.length > 0"
   >
     <v-card>
     <template
@@ -53,10 +52,10 @@ export default {
   name: "ToList",
   data: () => ({
     fromSelectedItem: 0,
-    FromSearchItem: "",
   }),
   computed: {
     ...mapState(useCurrencyStore, ['currencies_from_data', 'from_code_selected', 'to_code_selected','fromCurrencyName']),
+    ...mapWritableState(useCurrencyStore, ['FromSearchItem']),
   },
   methods: {
     ...mapActions(useCurrencyStore, ['setSelection','searchingFrom']),

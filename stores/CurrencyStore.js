@@ -15,6 +15,8 @@ export const useCurrencyStore = defineStore('currencies', {
         to_code_selected: null,
         fromCurrencyName: null,
         toCurrencyName: null,
+        FromSearchItem: '',
+        ToSearchItem: '',
     }),
 
     actions: {
@@ -193,16 +195,20 @@ export const useCurrencyStore = defineStore('currencies', {
             this.fromCurrencyName  = null
             this.to_code_selected = null
             this.toCurrencyName = null
+            this.FromSearchItem = ''
+            this.ToSearchItem = ''
 
             for (var i = 0; i < this.currencies_from_data.length; i++) {
                 for (var j = 0; j < this.currencies_from_data[i].tag_currencies.length; j++) {
                     this.currencies_from_data[i].tag_currencies[j].selected = false
+                    this.currencies_from_data[i].tag_currencies[j].active = true
                 }
             }
 
             for (var i = 0; i < this.currencies_to_data.length; i++) {
                 for (var j = 0; j < this.currencies_to_data[i].tag_currencies.length; j++) {
                     this.currencies_to_data[i].tag_currencies[j].selected = false
+                    this.currencies_to_data[i].tag_currencies[j].active = true
                 }
             }
 
@@ -258,24 +264,28 @@ export const useCurrencyStore = defineStore('currencies', {
                 navigateTo({ path: '/exchange-from-'+this.from_code_selected+'-to-'+ this.to_code_selected+'/'})
 
         },
-        clearSelection(locale){
 
+        clearSelection(locale){
 
 
             this.from_code_selected = null
             this.fromCurrencyName  = null
             this.to_code_selected = null
             this.toCurrencyName = null
+            this.FromSearchItem = ''
+            this.ToSearchItem = ''
 
             for (var i = 0; i < this.currencies_from_data.length; i++) {
                 for (var j = 0; j < this.currencies_from_data[i].tag_currencies.length; j++) {
                     this.currencies_from_data[i].tag_currencies[j].selected = false
+                    this.currencies_from_data[i].tag_currencies[j].active = true
                 }
             }
 
             for (var i = 0; i < this.currencies_to_data.length; i++) {
                 for (var j = 0; j < this.currencies_to_data[i].tag_currencies.length; j++) {
                     this.currencies_to_data[i].tag_currencies[j].selected = false
+                    this.currencies_to_data[i].tag_currencies[j].active = true
                 }
             }
 

@@ -93,12 +93,12 @@ export default {
 
   data: () => ({
     fromSelectedItem: 0,
-    FromSearchItem: "",
+
   }),
   computed: {
-    ...mapState(useCurrencyStore, ['currencies_from_data']),
     ...mapWritableState(useMainStore, ['from_list_panel']),
-    ...mapState(useCurrencyStore, ['from_code_selected', 'to_code_selected','fromCurrencyName']),
+    ...mapState(useCurrencyStore, ['currencies_from_data','from_code_selected', 'to_code_selected','fromCurrencyName', 'FromSearchItem']),
+    ...mapWritableState(useCurrencyStore, ['FromSearchItem']),
   },
   methods: {
     ...mapActions(useCurrencyStore, ['searchingFrom','setSelection']),
