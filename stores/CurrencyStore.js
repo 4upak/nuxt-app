@@ -190,32 +190,6 @@ export const useCurrencyStore = defineStore('currencies', {
             }
         },
 
-        clearSelections() {
-            this.from_code_selected = null
-            this.fromCurrencyName  = null
-            this.to_code_selected = null
-            this.toCurrencyName = null
-            this.FromSearchItem = ''
-            this.ToSearchItem = ''
-
-            for (var i = 0; i < this.currencies_from_data.length; i++) {
-                for (var j = 0; j < this.currencies_from_data[i].tag_currencies.length; j++) {
-                    this.currencies_from_data[i].tag_currencies[j].selected = false
-                    this.currencies_from_data[i].tag_currencies[j].active = true
-                }
-            }
-
-            for (var i = 0; i < this.currencies_to_data.length; i++) {
-                for (var j = 0; j < this.currencies_to_data[i].tag_currencies.length; j++) {
-                    this.currencies_to_data[i].tag_currencies[j].selected = false
-                    this.currencies_to_data[i].tag_currencies[j].active = true
-                }
-            }
-
-
-
-        },
-
         async currencyInfo(code, type) {
             if(code && type) {
                 const runtimeConfig = useRuntimeConfig()
@@ -288,6 +262,13 @@ export const useCurrencyStore = defineStore('currencies', {
                     this.currencies_to_data[i].tag_currencies[j].active = true
                 }
             }
+
+            //go to main page
+            if(locale!='en')
+                navigateTo({ path: '/'+locale+'/'})
+            else
+                navigateTo({ path: '/'})
+
 
         },
 

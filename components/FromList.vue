@@ -8,11 +8,10 @@
   >
   </v-text-field>
 
-
   <v-expansion-panels
       v-model="from_list_panel"
       multiple
-      v-if="currencies_from_data.length > 0"
+      v-if="currencies_from_data.length > 0 "
       variant="accordion"
   >
     <template
