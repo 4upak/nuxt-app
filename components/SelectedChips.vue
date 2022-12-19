@@ -33,7 +33,7 @@
     <v-icon
         class="ma-2"
         color="blue"
-        @click="this.leftbar_tab = 'one', clearSelection(this.$i18n.locale); "
+        @click="clearSelectionComponent()"
         v-if="fromCurrencyName && toCurrencyName"
     >
       mdi-square-edit-outline
@@ -61,6 +61,15 @@ export default {
       this.changeCurrencies(this.$i18n.locale)
       this.loadSelection(this.from_code_selected, this.to_code_selected)
       this.getRates(this.from_code_selected, this.to_code_selected)
+    },
+    clearSelectionComponent() {
+      this.leftbar_tab = 'one'
+      this.clearSelection(this.$i18n.locale)
+      document.querySelectorAll("div.v-list-item.v-list-item--active").forEach((el) => {
+        console.log(el.textContent)
+        el.classList.remove("v-list-item--active--selected")
+        console.log('123')
+      })
     }
   },
 

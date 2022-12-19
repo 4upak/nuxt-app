@@ -44,23 +44,24 @@
 
             >
               <template v-for="(currency, j) in item.tag_currencies">
-                <v-list-item
+                <div
                     :key="j"
                     :value="currency"
 
                     @click="selectItem(currency.code_name, currency.name);"
+
                     @touchstart="selectItem(currency.code_name, currency.name);"
                     v-if = "currency.active == true"
-                    active-class="boo"
-                    :class="{ 'v-list-item--active': currency.selected == true }"
-
+                    :class="currency.selected == true ? 'v-list-item--active--selected currency_item':'v-list-item--active--unselected currency_item'"
+                    active-color="primary"
+                    variant="plain"
 
                 >
-                  <v-list-item-title >
+                  <div class="item_name">
                     {{ currency.name }}
-                  </v-list-item-title>
+                  </div>
 
-                </v-list-item>
+                </div>
               </template>
             </v-list>
           </div>

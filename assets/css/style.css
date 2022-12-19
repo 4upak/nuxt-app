@@ -282,3 +282,26 @@ p{
     font-size:13px;
     color: #666;
 }
+h1{
+    text-align: center;
+}
+.v-expansion-panel-text .v-list-item--active{
+    background: #fff !important;
+}
+
+.v-list-item--active--selected{
+    background: #eee !important;
+    font-weight: bold !important;
+}
+.v-list-item__overlay, .v-list-item__underlay{
+    background: transparent !important;
+}
+.v-list-item--active{
+    background: transparent !important;
+}
+.currency_item{
+    cursor:pointer;
+    min-height:40px;
+    line-height:40px;
+    padding-left:15px;
+}

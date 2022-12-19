@@ -18,14 +18,21 @@
     >
 
           <template v-for="(currency, j) in item.tag_currencies">
-            <v-list-item
+
+
+            <div
                 :key="j"
                 :value="currency"
                 @click="setSelection(currency.code_name, currency.name, 'from',this.$i18n.locale);"
                 v-if = "currency.active == true"
+                :class="currency.selected == true ? 'v-list-item--active--selected currency_item':'v-list-item--active--unselected currency_item'"
+
             >
-              <v-list-item-title v-text="currency.name"></v-list-item-title>
-            </v-list-item>
+              <div class="item_name">
+                {{ currency.name }}
+              </div>
+
+            </div>
           </template>
 
     </template>

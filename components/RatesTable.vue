@@ -2,7 +2,6 @@
 
     <div v-if="rates.length > 0">
 
-      <template>
         <v-col
         class="d-flex align-center rate_result_cols"
         >
@@ -11,10 +10,10 @@
             <v-col cols="12" md="2">
               Exchange
             </v-col>
-            <v-col cols="12" md="5">
+            <v-col cols="12" md="4">
               Give
             </v-col>
-            <v-col cols="12" md="2">
+            <v-col cols="12" md="3">
               Get
             </v-col>
             <v-col cols="12" md="3">
@@ -24,7 +23,6 @@
           </v-row>
 
         </v-col>
-      </template>
 
       <template
           v-for="item in rates"
