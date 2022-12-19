@@ -19,7 +19,6 @@
 
     <v-row
       class="mt-5"
-
     >
       <v-col cols="12" md="5">
         <left-bar />
