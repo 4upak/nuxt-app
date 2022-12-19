@@ -8,7 +8,7 @@
   >
   </v-text-field>
   <template
-      v-if="this.FromSearchItem.length > 0"
+      v-if="this.FromSearchItem.length > 0 && !this.from_code_selected && !this.to_code_selected"
   >
     <v-card>
     <template

@@ -8,7 +8,7 @@
   >
   </v-text-field>
   <template
-      v-if="ToSearchItem.length > 0"
+      v-if="ToSearchItem.length > 0 && !this.from_code_selected && !this.to_code_selected"
   >
     <template
         v-for="(item, i) in currencies_to_data"
